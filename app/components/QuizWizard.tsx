@@ -9,6 +9,7 @@ import ProfileCollector from './ProfileCollector';
 import { Question, UserAnswers, QuestionsData, UserProfile } from '@/app/types';
 import { saveQuizProgress, getSavedState, clearQuizProgress, saveQuizResults, saveUserProfile, getSavedProfile } from '@/app/lib/storage';
 import { calculateResults, filterQuestions } from '@/app/lib/scoring';
+import { submitToWebhook } from '@/app/lib/webhook';
 import questionsData from '@/app/data/questions.json';
 
 export default function QuizWizard() {
@@ -108,7 +109,7 @@ export default function QuizWizard() {
     }
   }, [currentIndex]);
 
-  const handleNext = useCallback(() => {
+  const handleNext = useCallback(async () => {
     if (!userProfile) return;
     
     if (currentIndex < questions.length - 1) {
@@ -119,6 +120,14 @@ export default function QuizWizard() {
       const results = calculateResults(answers, questions, userProfile);
       saveQuizResults(results, answers);
       clearQuizProgress();
+      
+      // Auto-submit to Google Sheets in the background
+      submitToWebhook(results, answers).then(result => {
+        console.log('Auto-submit result:', result.message);
+      }).catch(err => {
+        console.error('Auto-submit failed:', err);
+      });
+      
       router.push('/results');
     }
   }, [currentIndex, questions, answers, router, userProfile]);

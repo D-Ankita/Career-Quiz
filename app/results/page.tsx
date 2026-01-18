@@ -3,13 +3,12 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Home, Download, RefreshCw, Send, CheckCircle, Loader2, BarChart3, Sparkles } from 'lucide-react';
+import { Home, Download, RefreshCw, BarChart3, Sparkles } from 'lucide-react';
 import ResultCards from '@/app/components/ResultCards';
 import ParentDashboard from '@/app/components/ParentDashboard';
 import { QuizResults, UserAnswers } from '@/app/types';
 import { getSavedResults, getSavedAnswers, clearAllData, downloadJSON } from '@/app/lib/storage';
 import { exportResultsJSON } from '@/app/lib/scoring';
-import { submitToWebhook } from '@/app/lib/webhook';
 
 export default function ResultsPage() {
   const router = useRouter();
@@ -18,10 +17,6 @@ export default function ResultsPage() {
   const [answers, setAnswers] = useState<UserAnswers | null>(null);
   const [showDetailedView, setShowDetailedView] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  
-  // Submit state
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     const savedResults = getSavedResults();
@@ -42,20 +37,6 @@ export default function ResultsPage() {
       const jsonContent = exportResultsJSON(results, answers);
       const fileName = `${results.userProfile.name.replace(/\s+/g, '_')}_career_results.json`;
       downloadJSON(jsonContent, fileName);
-    }
-  };
-
-  const handleSubmit = async () => {
-    if (!results || !answers || isSubmitting || isSubmitted) return;
-    
-    setIsSubmitting(true);
-    
-    const result = await submitToWebhook(results, answers);
-    
-    setIsSubmitting(false);
-    
-    if (result.success) {
-      setIsSubmitted(true);
     }
   };
 
@@ -177,42 +158,17 @@ export default function ResultsPage() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleDownload}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-white hover:bg-white/20 transition-all border border-white/20"
+            className="flex items-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-ocean to-lavender text-white font-semibold shadow-lg shadow-ocean/30 transition-all"
           >
             <Download className="w-5 h-5" />
-            Download
-          </motion.button>
-
-          {/* Submit Button */}
-          <motion.button
-            whileHover={{ scale: isSubmitted ? 1 : 1.05 }}
-            whileTap={{ scale: isSubmitted ? 1 : 0.95 }}
-            onClick={handleSubmit}
-            disabled={isSubmitting || isSubmitted}
-            className={`flex items-center gap-2 px-8 py-3 rounded-xl font-semibold shadow-lg transition-all ${
-              isSubmitted
-                ? 'bg-emerald-500 text-white cursor-default'
-                : 'bg-gradient-to-r from-ocean to-lavender text-white shadow-ocean/30'
-            }`}
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Submitting...
-              </>
-            ) : isSubmitted ? (
-              <>
-                <CheckCircle className="w-5 h-5" />
-                Submitted!
-              </>
-            ) : (
-              <>
-                <Send className="w-5 h-5" />
-                Submit
-              </>
-            )}
+            Download Results
           </motion.button>
         </div>
+        
+        {/* Auto-submitted notice */}
+        <p className="text-center text-white/40 text-sm mt-4">
+          ✓ Results automatically saved
+        </p>
       </motion.div>
     </div>
   );
