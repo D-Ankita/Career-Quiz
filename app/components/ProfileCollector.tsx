@@ -220,10 +220,7 @@ export default function ProfileCollector({ onComplete, initialProfile }: Profile
                     What's your stream? 📚
                   </h2>
                   <p className="text-white/60 mb-8">
-                    {educationLevel === '10th_passed' 
-                      ? "Which stream are you planning to take?"
-                      : "Which stream are you currently in?"
-                    }
+                    Which stream are you currently in?
                   </p>
                   
                   <div className="grid gap-3">
