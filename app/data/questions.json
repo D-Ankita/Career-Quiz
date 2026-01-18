@@ -1,0 +1,564 @@
+{
+  "meta": {
+    "title": "Career Discovery Game",
+    "version": "2.0",
+    "multiSelectMaxDefault": 3,
+    "parentPin": "2580"
+  },
+  "tracks": [
+    "jee_pcm", "pcb_med", "commerce", "coding_it", "design_creative", 
+    "govt_defense", "automotive_mech", "upsc_civil", "defense_forces",
+    "aviation", "maritime", "law_legal", "media_journalism", "psychology",
+    "sports_fitness", "research_academia", "agriculture", "hospitality"
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "round": "Instinct",
+      "type": "single",
+      "prompt": "Pick one (no thinking):",
+      "options": [
+        { "id": "a", "label": "🧩 Solve a brain teaser", "score": { "jee_pcm": 2, "coding_it": 2, "clarity": 1 } },
+        { "id": "b", "label": "🎨 Create something cool", "score": { "design_creative": 3, "clarity": 1 } },
+        { "id": "c", "label": "🏃 Do something physical", "score": { "sports_fitness": 2, "defense_forces": 1, "clarity": 1 } },
+        { "id": "d", "label": "📖 Read or learn something", "score": { "research_academia": 2, "upsc_civil": 1, "clarity": 1 } }
+      ]
+    },
+    {
+      "id": "q2",
+      "round": "Instinct",
+      "type": "multi",
+      "multiSelectMax": 2,
+      "prompt": "Which YouTube channels do you love? (Pick up to 2)",
+      "options": [
+        { "id": "a", "label": "🔧 Tech / science videos", "score": { "jee_pcm": 2, "coding_it": 1, "clarity": 1 } },
+        { "id": "b", "label": "🎬 Edits, reels, thumbnails", "score": { "design_creative": 3, "media_journalism": 1 } },
+        { "id": "c", "label": "🎮 Gaming / esports", "score": { "coding_it": 2, "jee_pcm": 1 } },
+        { "id": "d", "label": "💼 Business / success stories", "score": { "commerce": 2, "clarity": 1 } },
+        { "id": "e", "label": "🚗 Cars / bikes / supercars", "score": { "automotive_mech": 3, "jee_pcm": 1 } },
+        { "id": "f", "label": "✈️ Aviation / planes / travel", "score": { "aviation": 3, "hospitality": 1 } },
+        { "id": "g", "label": "🪖 Military / defense content", "score": { "defense_forces": 3, "govt_defense": 1 } },
+        { "id": "h", "label": "🏋️ Fitness / sports", "score": { "sports_fitness": 3 } }
+      ]
+    },
+    {
+      "id": "q3",
+      "round": "Instinct",
+      "type": "single",
+      "prompt": "Free evening. You prefer:",
+      "options": [
+        { "id": "a", "label": "📚 Learning something new", "score": { "jee_pcm": 1, "research_academia": 2, "routineTolerance": 1 } },
+        { "id": "b", "label": "🛠️ Making / building something", "score": { "design_creative": 2, "automotive_mech": 2, "coding_it": 1 } },
+        { "id": "c", "label": "🏆 Playing sports / competing", "score": { "sports_fitness": 2, "defense_forces": 1, "stressTolerance": 1 } },
+        { "id": "d", "label": "🎬 Watching movies / content", "score": { "media_journalism": 1, "design_creative": 1 } },
+        { "id": "e", "label": "👥 Hanging out with friends", "score": { "hospitality": 1, "psychology": 1 } }
+      ]
+    },
+    {
+      "id": "q4",
+      "round": "Instinct",
+      "type": "single",
+      "prompt": "People say you are more:",
+      "options": [
+        { "id": "a", "label": "🧠 Curious & analytical", "score": { "jee_pcm": 2, "research_academia": 2, "clarity": 1 } },
+        { "id": "b", "label": "🎭 Creative & expressive", "score": { "design_creative": 2, "media_journalism": 1, "clarity": 1 } },
+        { "id": "c", "label": "🔥 Competitive & driven", "score": { "jee_pcm": 1, "defense_forces": 2, "sports_fitness": 1, "stressTolerance": 1 } },
+        { "id": "d", "label": "🤝 Calm & helpful", "score": { "pcb_med": 2, "psychology": 2, "clarity": 1 } },
+        { "id": "e", "label": "🗣️ Persuasive & social", "score": { "commerce": 2, "law_legal": 1, "media_journalism": 1 } }
+      ]
+    },
+    {
+      "id": "q5",
+      "round": "Brain",
+      "type": "single",
+      "prompt": "When something breaks, you usually:",
+      "options": [
+        { "id": "a", "label": "🔩 Try fixing it yourself", "score": { "jee_pcm": 2, "automotive_mech": 3, "clarity": 1 } },
+        { "id": "b", "label": "🔍 Google and understand why", "score": { "coding_it": 2, "research_academia": 1, "clarity": 1 } },
+        { "id": "c", "label": "✨ Think of better designs", "score": { "design_creative": 3, "clarity": 1 } },
+        { "id": "d", "label": "📞 Call someone who knows", "score": { "commerce": 1, "hospitality": 1 } }
+      ]
+    },
+    {
+      "id": "q6",
+      "round": "Brain",
+      "type": "single",
+      "prompt": "What feels most satisfying?",
+      "options": [
+        { "id": "a", "label": "✅ Getting the right answer", "score": { "jee_pcm": 2, "coding_it": 2 } },
+        { "id": "b", "label": "🎯 Making something look perfect", "score": { "design_creative": 3 } },
+        { "id": "c", "label": "🏅 Winning / being the best", "score": { "defense_forces": 2, "sports_fitness": 2, "stressTolerance": 1 } },
+        { "id": "d", "label": "🌟 Helping someone succeed", "score": { "pcb_med": 2, "psychology": 2 } },
+        { "id": "e", "label": "💡 Understanding something deeply", "score": { "research_academia": 3, "upsc_civil": 1 } }
+      ]
+    },
+    {
+      "id": "q7",
+      "round": "Brain",
+      "type": "single",
+      "prompt": "In group projects, you usually become:",
+      "options": [
+        { "id": "a", "label": "🧠 The problem solver", "score": { "jee_pcm": 2, "coding_it": 2 } },
+        { "id": "b", "label": "💡 The idea person", "score": { "design_creative": 2, "commerce": 1, "media_journalism": 1 } },
+        { "id": "c", "label": "🎤 The leader / presenter", "score": { "commerce": 2, "upsc_civil": 1, "law_legal": 1, "clarity": 1 } },
+        { "id": "d", "label": "🤝 The helper / coordinator", "score": { "pcb_med": 1, "psychology": 2, "hospitality": 1 } },
+        { "id": "e", "label": "📋 The researcher / fact-checker", "score": { "research_academia": 2, "law_legal": 1 } }
+      ]
+    },
+    {
+      "id": "q8",
+      "round": "Brain",
+      "type": "multi",
+      "multiSelectMax": 2,
+      "prompt": "Which school tasks do you actually enjoy? (Pick up to 2)",
+      "options": [
+        { "id": "a", "label": "🧩 Logical / math problems", "score": { "jee_pcm": 2, "coding_it": 1 } },
+        { "id": "b", "label": "🎨 Creative assignments", "score": { "design_creative": 3 } },
+        { "id": "c", "label": "🗣️ Debates / presentations", "score": { "law_legal": 2, "commerce": 1, "media_journalism": 1 } },
+        { "id": "d", "label": "🧪 Lab work / practicals", "score": { "pcb_med": 2, "jee_pcm": 1, "research_academia": 1 } },
+        { "id": "e", "label": "📝 Essays / writing", "score": { "media_journalism": 2, "upsc_civil": 1 } },
+        { "id": "f", "label": "🏃 Sports / PT", "score": { "sports_fitness": 3, "defense_forces": 1 } }
+      ]
+    },
+    {
+      "id": "q9",
+      "round": "Discipline",
+      "type": "single",
+      "prompt": "Daily routine feels:",
+      "options": [
+        { "id": "a", "label": "✅ Comfortable - I like structure", "score": { "routineTolerance": 3, "jee_pcm": 1, "defense_forces": 1 } },
+        { "id": "b", "label": "😐 Manageable", "score": { "routineTolerance": 1 } },
+        { "id": "c", "label": "😵 Draining - I need variety", "score": { "routineTolerance": -2, "design_creative": 1 } }
+      ]
+    },
+    {
+      "id": "q10",
+      "round": "Discipline",
+      "type": "single",
+      "prompt": "If something is difficult:",
+      "options": [
+        { "id": "a", "label": "💪 I push till it clicks", "score": { "jee_pcm": 3, "defense_forces": 2, "routineTolerance": 1 } },
+        { "id": "b", "label": "🧑‍🏫 I need guidance", "score": { "jee_pcm": 1, "pcb_med": 1 } },
+        { "id": "c", "label": "🚪 I lose interest", "score": { "jee_pcm": -2, "routineTolerance": -2, "clarity": -1 } }
+      ]
+    },
+    {
+      "id": "q11",
+      "round": "Discipline",
+      "type": "single",
+      "prompt": "Weekly tests & rankings make you feel:",
+      "options": [
+        { "id": "a", "label": "🔥 Motivated", "score": { "jee_pcm": 2, "defense_forces": 1, "stressTolerance": 2 } },
+        { "id": "b", "label": "😶 Neutral", "score": { "stressTolerance": 1 } },
+        { "id": "c", "label": "😰 Stressed", "score": { "jee_pcm": -1, "stressTolerance": -2 } }
+      ]
+    },
+    {
+      "id": "q12",
+      "round": "Discipline",
+      "type": "single",
+      "prompt": "A long syllabus makes you:",
+      "options": [
+        { "id": "a", "label": "🗓️ Plan & divide it", "score": { "jee_pcm": 2, "upsc_civil": 2, "routineTolerance": 2 } },
+        { "id": "b", "label": "🌊 Go with the flow", "score": { "routineTolerance": 0 } },
+        { "id": "c", "label": "😵 Panic / overwhelmed", "score": { "stressTolerance": -2, "routineTolerance": -1 } }
+      ]
+    },
+    {
+      "id": "q13",
+      "round": "Interests",
+      "type": "multi",
+      "multiSelectMax": 3,
+      "prompt": "Which topics naturally pull you? (Pick up to 3)",
+      "options": [
+        { "id": "a", "label": "🚀 Space / rockets / physics", "score": { "jee_pcm": 3, "aviation": 1 } },
+        { "id": "b", "label": "🧬 Human body / medicine", "score": { "pcb_med": 3 } },
+        { "id": "c", "label": "💰 Money / markets / business", "score": { "commerce": 3 } },
+        { "id": "d", "label": "🎨 Art / design / visuals", "score": { "design_creative": 3 } },
+        { "id": "e", "label": "🚗 Cars / engines / machines", "score": { "automotive_mech": 3, "jee_pcm": 1 } },
+        { "id": "f", "label": "✈️ Planes / flying / aerospace", "score": { "aviation": 3, "jee_pcm": 1 } },
+        { "id": "g", "label": "🚢 Ships / ocean / navy", "score": { "maritime": 3, "defense_forces": 1 } },
+        { "id": "h", "label": "⚖️ Laws / justice / debates", "score": { "law_legal": 3, "upsc_civil": 1 } },
+        { "id": "i", "label": "🧠 Psychology / human behavior", "score": { "psychology": 3 } },
+        { "id": "j", "label": "🪖 Military / defense / weapons", "score": { "defense_forces": 3 } },
+        { "id": "k", "label": "💻 Coding / apps / AI", "score": { "coding_it": 3 } },
+        { "id": "l", "label": "🌾 Farming / nature / animals", "score": { "agriculture": 3, "pcb_med": 1 } }
+      ]
+    },
+    {
+      "id": "q14",
+      "round": "Interests",
+      "type": "single",
+      "prompt": "Which news excites you most?",
+      "options": [
+        { "id": "a", "label": "📱 New iPhone / tech launch", "score": { "coding_it": 2, "jee_pcm": 1 } },
+        { "id": "b", "label": "🏢 Startup funding / IPO", "score": { "commerce": 3 } },
+        { "id": "c", "label": "🩺 Medical breakthrough", "score": { "pcb_med": 3 } },
+        { "id": "d", "label": "🏎️ New car / EV launch", "score": { "automotive_mech": 3 } },
+        { "id": "e", "label": "🚀 ISRO / SpaceX mission", "score": { "aviation": 2, "jee_pcm": 2 } },
+        { "id": "f", "label": "🪖 Defense deal / military ops", "score": { "defense_forces": 3 } },
+        { "id": "g", "label": "⚖️ Court verdict / policy change", "score": { "law_legal": 2, "upsc_civil": 2 } },
+        { "id": "h", "label": "🏆 Sports results / transfers", "score": { "sports_fitness": 3 } }
+      ]
+    },
+    {
+      "id": "q15",
+      "round": "Interests",
+      "type": "single",
+      "prompt": "Which zone feels most like YOU?",
+      "options": [
+        { "id": "a", "label": "🔢 Numbers, logic & calculations", "score": { "jee_pcm": 2, "commerce": 1, "coding_it": 1 } },
+        { "id": "b", "label": "🧑‍🤝‍🧑 People, communication & ideas", "score": { "commerce": 2, "psychology": 2, "media_journalism": 1 } },
+        { "id": "c", "label": "🖌️ Colors, visuals & creativity", "score": { "design_creative": 3 } },
+        { "id": "d", "label": "🪖 Action, discipline & outdoors", "score": { "defense_forces": 3, "sports_fitness": 1 } },
+        { "id": "e", "label": "🔧 Machines, tools & hands-on work", "score": { "automotive_mech": 3, "jee_pcm": 1 } },
+        { "id": "f", "label": "📚 Research, reading & analysis", "score": { "research_academia": 3, "upsc_civil": 1 } }
+      ]
+    },
+    {
+      "id": "q16",
+      "round": "Interests",
+      "type": "single",
+      "prompt": "What do you google most?",
+      "options": [
+        { "id": "a", "label": "🔧 How things work", "score": { "jee_pcm": 2, "automotive_mech": 1 } },
+        { "id": "b", "label": "💼 How to make money", "score": { "commerce": 3 } },
+        { "id": "c", "label": "🎨 Design / editing tutorials", "score": { "design_creative": 3 } },
+        { "id": "d", "label": "🚗 Car specs / bike reviews", "score": { "automotive_mech": 3 } },
+        { "id": "e", "label": "💻 Coding / tech stuff", "score": { "coding_it": 3 } },
+        { "id": "f", "label": "🏋️ Fitness / workout plans", "score": { "sports_fitness": 3, "defense_forces": 1 } },
+        { "id": "g", "label": "✈️ Travel / places / adventure", "score": { "hospitality": 2, "aviation": 1 } }
+      ]
+    },
+    {
+      "id": "q17",
+      "round": "Future",
+      "type": "single",
+      "prompt": "At 25, you see yourself:",
+      "options": [
+        { "id": "a", "label": "💻 Laptop + remote work", "score": { "coding_it": 3, "design_creative": 1 } },
+        { "id": "b", "label": "🏢 Corner office + meetings", "score": { "commerce": 3 } },
+        { "id": "c", "label": "🎬 Studio / creative space", "score": { "design_creative": 3, "media_journalism": 1 } },
+        { "id": "d", "label": "🪖 In uniform, serving nation", "score": { "defense_forces": 3, "govt_defense": 1 } },
+        { "id": "e", "label": "🏭 Workshop / R&D center", "score": { "automotive_mech": 2, "jee_pcm": 2 } },
+        { "id": "f", "label": "✈️ Flying / traveling the world", "score": { "aviation": 3, "hospitality": 2 } },
+        { "id": "g", "label": "🏥 Hospital / saving lives", "score": { "pcb_med": 3 } },
+        { "id": "h", "label": "⚖️ Courtroom / justice system", "score": { "law_legal": 3, "upsc_civil": 1 } }
+      ]
+    },
+    {
+      "id": "q18",
+      "round": "Future",
+      "type": "single",
+      "prompt": "Work style you prefer:",
+      "options": [
+        { "id": "a", "label": "🧱 Structured 9-to-5", "score": { "govt_defense": 2, "routineTolerance": 2 } },
+        { "id": "b", "label": "🕊️ Flexible / freelance", "score": { "coding_it": 2, "design_creative": 2 } },
+        { "id": "c", "label": "🔥 High-pressure / fast-paced", "score": { "commerce": 2, "defense_forces": 2, "stressTolerance": 1 } },
+        { "id": "d", "label": "🌍 Travel-based / field work", "score": { "aviation": 2, "hospitality": 2, "maritime": 1, "defense_forces": 1 } },
+        { "id": "e", "label": "🔩 Hands-on / physical", "score": { "automotive_mech": 2, "sports_fitness": 2, "agriculture": 1 } }
+      ]
+    },
+    {
+      "id": "q19",
+      "round": "Future",
+      "type": "multi",
+      "multiSelectMax": 2,
+      "prompt": "What matters most to you in a career? (Pick 2)",
+      "options": [
+        { "id": "a", "label": "💸 High salary", "score": { "coding_it": 2, "commerce": 2, "jee_pcm": 1 } },
+        { "id": "b", "label": "🧷 Job security", "score": { "govt_defense": 3, "upsc_civil": 2 } },
+        { "id": "c", "label": "🕊️ Freedom & flexibility", "score": { "coding_it": 2, "design_creative": 2 } },
+        { "id": "d", "label": "🌍 Impact & purpose", "score": { "pcb_med": 2, "upsc_civil": 1, "psychology": 1 } },
+        { "id": "e", "label": "🏆 Fame & recognition", "score": { "sports_fitness": 2, "media_journalism": 2, "design_creative": 1 } },
+        { "id": "f", "label": "🎖️ Respect & honor", "score": { "defense_forces": 3, "upsc_civil": 2 } },
+        { "id": "g", "label": "🛠️ Building real things", "score": { "automotive_mech": 2, "jee_pcm": 2 } }
+      ]
+    },
+    {
+      "id": "q20",
+      "round": "Future",
+      "type": "single",
+      "prompt": "You'd rather be:",
+      "options": [
+        { "id": "a", "label": "🧠 Expert in one thing", "score": { "jee_pcm": 1, "pcb_med": 1, "research_academia": 2, "clarity": 1 } },
+        { "id": "b", "label": "🧩 Multi-skill generalist", "score": { "design_creative": 1, "coding_it": 1, "clarity": 1 } },
+        { "id": "c", "label": "🧑‍💼 Leader of people", "score": { "commerce": 2, "upsc_civil": 2, "clarity": 1 } },
+        { "id": "d", "label": "🎬 Creator / influencer", "score": { "design_creative": 2, "media_journalism": 2, "clarity": 1 } },
+        { "id": "e", "label": "🔧 Engineer / builder", "score": { "automotive_mech": 2, "jee_pcm": 2, "clarity": 1 } },
+        { "id": "f", "label": "🪖 Officer / commander", "score": { "defense_forces": 3, "clarity": 1 } }
+      ]
+    },
+    {
+      "id": "q21",
+      "round": "JEE Reality",
+      "type": "single",
+      "prompt": "2 years strict routine for a big goal?",
+      "options": [
+        { "id": "a", "label": "✅ Yes, I can do it", "score": { "jee_pcm": 3, "defense_forces": 2, "routineTolerance": 3, "clarity": 1 } },
+        { "id": "b", "label": "🤔 Maybe, not sure", "score": { "jee_pcm": 1, "routineTolerance": 1 } },
+        { "id": "c", "label": "❌ No, that's too much", "score": { "jee_pcm": -3, "routineTolerance": -3 } }
+      ]
+    },
+    {
+      "id": "q22",
+      "round": "JEE Reality",
+      "type": "single",
+      "prompt": "Daily revision even when bored?",
+      "options": [
+        { "id": "a", "label": "✅ Yes", "score": { "jee_pcm": 3, "upsc_civil": 2, "routineTolerance": 2 } },
+        { "id": "b", "label": "😅 Sometimes", "score": { "jee_pcm": 1, "routineTolerance": 1 } },
+        { "id": "c", "label": "❌ No", "score": { "jee_pcm": -2, "routineTolerance": -2 } }
+      ]
+    },
+    {
+      "id": "q23",
+      "round": "JEE Reality",
+      "type": "single",
+      "prompt": "Why would you choose a competitive exam path?",
+      "options": [
+        { "id": "a", "label": "❤️ I genuinely love the subject", "score": { "jee_pcm": 3, "pcb_med": 2, "clarity": 2 } },
+        { "id": "b", "label": "🏫 For a good college / career", "score": { "jee_pcm": 1, "clarity": 1 } },
+        { "id": "c", "label": "👥 Because everyone says so", "score": { "jee_pcm": -2, "clarity": -1 } },
+        { "id": "d", "label": "🤷 Haven't thought about it", "score": { "clarity": -2 } }
+      ]
+    },
+    {
+      "id": "q24",
+      "round": "JEE Reality",
+      "type": "single",
+      "prompt": "If competitive exams didn't exist, you would:",
+      "options": [
+        { "id": "a", "label": "🔬 Still love science / engineering", "score": { "jee_pcm": 3, "research_academia": 2, "clarity": 2 } },
+        { "id": "b", "label": "🏥 Still want to help people (medical)", "score": { "pcb_med": 3, "clarity": 2 } },
+        { "id": "c", "label": "🌈 Explore creative / business paths", "score": { "design_creative": 2, "commerce": 2, "clarity": 1 } },
+        { "id": "d", "label": "🪖 Join defense / govt services", "score": { "defense_forces": 3, "upsc_civil": 2 } }
+      ]
+    },
+    {
+      "id": "q25",
+      "round": "Backup",
+      "type": "single",
+      "prompt": "If your first choice doesn't work out:",
+      "options": [
+        { "id": "a", "label": "💪 I'll adapt and find alternatives", "score": { "routineTolerance": 2, "stressTolerance": 2, "clarity": 1 } },
+        { "id": "b", "label": "😓 I'll struggle but manage", "score": { "stressTolerance": -1 } },
+        { "id": "c", "label": "😰 It would break me", "score": { "stressTolerance": -3, "clarity": -1 } }
+      ]
+    },
+    {
+      "id": "q26",
+      "round": "Backup",
+      "type": "single",
+      "prompt": "When parents expect a lot:",
+      "options": [
+        { "id": "a", "label": "✅ I handle it well", "score": { "stressTolerance": 2 } },
+        { "id": "b", "label": "😰 It stresses me out", "score": { "stressTolerance": -2 } },
+        { "id": "c", "label": "🗣️ I communicate my views", "score": { "clarity": 1, "law_legal": 1 } }
+      ]
+    },
+    {
+      "id": "q27",
+      "round": "Backup",
+      "type": "single",
+      "prompt": "If you could switch careers anytime:",
+      "options": [
+        { "id": "a", "label": "🌈 I'd explore many paths", "score": { "design_creative": 1, "coding_it": 1, "media_journalism": 1 } },
+        { "id": "b", "label": "🧱 I'd stick to one thing", "score": { "routineTolerance": 1, "research_academia": 1, "clarity": 1 } },
+        { "id": "c", "label": "🔄 I'd combine multiple interests", "score": { "commerce": 1, "coding_it": 1, "clarity": 1 } }
+      ]
+    },
+    {
+      "id": "q28",
+      "round": "Backup",
+      "type": "single",
+      "prompt": "What scares you more?",
+      "options": [
+        { "id": "a", "label": "❌ Failing an exam", "score": { "stressTolerance": -1 } },
+        { "id": "b", "label": "😬 Being stuck in wrong career", "score": { "clarity": 2 } },
+        { "id": "c", "label": "🤷 Neither really scares me", "score": { "stressTolerance": 1, "clarity": 1 } }
+      ]
+    },
+    {
+      "id": "q29",
+      "round": "Honesty",
+      "type": "single",
+      "prompt": "If no one judged you, you'd choose:",
+      "options": [
+        { "id": "a", "label": "🔬 Science / Engineering", "score": { "jee_pcm": 3, "clarity": 2 } },
+        { "id": "b", "label": "🩺 Medical / Healthcare", "score": { "pcb_med": 3, "clarity": 2 } },
+        { "id": "c", "label": "💼 Commerce / Business", "score": { "commerce": 3, "clarity": 2 } },
+        { "id": "d", "label": "🎨 Arts / Design / Creative", "score": { "design_creative": 3, "media_journalism": 1, "clarity": 2 } },
+        { "id": "e", "label": "🪖 Defense / Uniform services", "score": { "defense_forces": 3, "clarity": 2 } },
+        { "id": "f", "label": "✈️ Aviation / Travel", "score": { "aviation": 3, "hospitality": 1, "clarity": 2 } },
+        { "id": "g", "label": "🤷 Still figuring out", "score": { "clarity": -2 } }
+      ]
+    },
+    {
+      "id": "q30",
+      "round": "Honesty",
+      "type": "multi",
+      "multiSelectMax": 2,
+      "prompt": "What excites you most? (Pick 2)",
+      "options": [
+        { "id": "a", "label": "🧩 Solving hard problems", "score": { "jee_pcm": 2, "coding_it": 2 } },
+        { "id": "b", "label": "🎨 Creating beautiful things", "score": { "design_creative": 3 } },
+        { "id": "c", "label": "🧑‍💼 Running a business", "score": { "commerce": 3 } },
+        { "id": "d", "label": "💛 Helping / healing people", "score": { "pcb_med": 2, "psychology": 2 } },
+        { "id": "e", "label": "🔧 Building / fixing machines", "score": { "automotive_mech": 3, "jee_pcm": 1 } },
+        { "id": "f", "label": "🏆 Competing / winning", "score": { "sports_fitness": 2, "defense_forces": 2 } },
+        { "id": "g", "label": "📰 Telling stories / news", "score": { "media_journalism": 3 } },
+        { "id": "h", "label": "⚖️ Arguing / debating", "score": { "law_legal": 3, "upsc_civil": 1 } }
+      ]
+    },
+    {
+      "id": "q31",
+      "round": "Honesty",
+      "type": "single",
+      "prompt": "Your biggest strength:",
+      "options": [
+        { "id": "a", "label": "🎯 Focus & concentration", "score": { "routineTolerance": 2, "jee_pcm": 1, "research_academia": 1 } },
+        { "id": "b", "label": "✨ Creativity & imagination", "score": { "design_creative": 2, "media_journalism": 1 } },
+        { "id": "c", "label": "🗣️ Communication & convincing", "score": { "commerce": 2, "law_legal": 1 } },
+        { "id": "d", "label": "🪖 Discipline & physical fitness", "score": { "defense_forces": 2, "sports_fitness": 2, "routineTolerance": 1 } },
+        { "id": "e", "label": "🛠️ Hands-on practical skills", "score": { "automotive_mech": 2, "agriculture": 1, "clarity": 1 } },
+        { "id": "f", "label": "🧠 Quick learning & memory", "score": { "jee_pcm": 1, "upsc_civil": 1, "pcb_med": 1 } }
+      ]
+    },
+    {
+      "id": "q32",
+      "round": "Honesty",
+      "type": "single",
+      "prompt": "Your biggest struggle:",
+      "options": [
+        { "id": "a", "label": "😵 Concentration / focus", "score": { "routineTolerance": -1 } },
+        { "id": "b", "label": "🥱 Boredom / losing interest", "score": { "routineTolerance": -1 } },
+        { "id": "c", "label": "😰 Pressure / anxiety", "score": { "stressTolerance": -2 } },
+        { "id": "d", "label": "😶 Confidence / speaking up", "score": { "clarity": -1, "commerce": -1 } },
+        { "id": "e", "label": "📚 Memorizing / theory", "score": { "upsc_civil": -1, "pcb_med": -1 } }
+      ]
+    },
+    {
+      "id": "q33",
+      "round": "Passions",
+      "type": "single",
+      "prompt": "When you see a cool car on the road:",
+      "options": [
+        { "id": "a", "label": "🔍 Wonder how the engine works", "score": { "automotive_mech": 3, "jee_pcm": 2 } },
+        { "id": "b", "label": "🎨 Notice the design & colors", "score": { "design_creative": 3, "automotive_mech": 1 } },
+        { "id": "c", "label": "💰 Think about the price", "score": { "commerce": 2, "automotive_mech": 1 } },
+        { "id": "d", "label": "🏁 Imagine racing it", "score": { "sports_fitness": 1, "automotive_mech": 2 } },
+        { "id": "e", "label": "🤷 Don't really notice", "score": {} }
+      ]
+    },
+    {
+      "id": "q34",
+      "round": "Passions",
+      "type": "single",
+      "prompt": "You'd rather spend a day at:",
+      "options": [
+        { "id": "a", "label": "🏎️ Auto expo / car show", "score": { "automotive_mech": 3 } },
+        { "id": "b", "label": "💻 Tech / gaming conference", "score": { "coding_it": 3, "jee_pcm": 1 } },
+        { "id": "c", "label": "🎨 Art gallery / design studio", "score": { "design_creative": 3 } },
+        { "id": "d", "label": "🏥 Hospital / science lab", "score": { "pcb_med": 3, "research_academia": 1 } },
+        { "id": "e", "label": "✈️ Airport / aviation museum", "score": { "aviation": 3 } },
+        { "id": "f", "label": "🪖 Army base / parade ground", "score": { "defense_forces": 3 } },
+        { "id": "g", "label": "🏛️ Parliament / court", "score": { "upsc_civil": 2, "law_legal": 2 } },
+        { "id": "h", "label": "🚢 Port / on a ship", "score": { "maritime": 3 } }
+      ]
+    },
+    {
+      "id": "q35",
+      "round": "Passions",
+      "type": "single",
+      "prompt": "What about vehicles fascinates you most?",
+      "options": [
+        { "id": "a", "label": "⚡ Engine power & speed", "score": { "automotive_mech": 3, "jee_pcm": 2 } },
+        { "id": "b", "label": "🎨 Body design & looks", "score": { "design_creative": 2, "automotive_mech": 2 } },
+        { "id": "c", "label": "🔌 EV / hybrid technology", "score": { "automotive_mech": 2, "coding_it": 2, "jee_pcm": 1 } },
+        { "id": "d", "label": "📊 Market & sales trends", "score": { "commerce": 3 } },
+        { "id": "e", "label": "🤷 Not into vehicles", "score": {} }
+      ]
+    },
+    {
+      "id": "q36",
+      "round": "Passions",
+      "type": "single",
+      "prompt": "If you could build something, it would be:",
+      "options": [
+        { "id": "a", "label": "🏎️ Custom car / go-kart", "score": { "automotive_mech": 3, "jee_pcm": 2 } },
+        { "id": "b", "label": "🤖 Robot / drone", "score": { "coding_it": 2, "jee_pcm": 2, "automotive_mech": 1 } },
+        { "id": "c", "label": "📱 App / website / game", "score": { "coding_it": 3 } },
+        { "id": "d", "label": "🎬 Film / animation / music", "score": { "design_creative": 3, "media_journalism": 1 } },
+        { "id": "e", "label": "🏠 Business / startup", "score": { "commerce": 3 } },
+        { "id": "f", "label": "✈️ Model plane / RC aircraft", "score": { "aviation": 3, "jee_pcm": 1 } },
+        { "id": "g", "label": "🚢 Model ship / boat", "score": { "maritime": 3 } }
+      ]
+    },
+    {
+      "id": "q37",
+      "round": "Passions",
+      "type": "single",
+      "prompt": "Which dream job sounds coolest?",
+      "options": [
+        { "id": "a", "label": "🏎️ F1 Engineer / Car Designer", "score": { "automotive_mech": 3, "jee_pcm": 2, "clarity": 2 } },
+        { "id": "b", "label": "🚀 ISRO Scientist / Space Engineer", "score": { "jee_pcm": 3, "aviation": 2, "clarity": 2 } },
+        { "id": "c", "label": "👨‍✈️ Commercial / Fighter Pilot", "score": { "aviation": 3, "defense_forces": 2, "clarity": 2 } },
+        { "id": "d", "label": "🪖 Army / Navy Officer", "score": { "defense_forces": 3, "clarity": 2 } },
+        { "id": "e", "label": "⚖️ IAS Officer / Judge", "score": { "upsc_civil": 3, "law_legal": 2, "clarity": 2 } },
+        { "id": "f", "label": "💻 Google/Microsoft Engineer", "score": { "coding_it": 3, "clarity": 2 } },
+        { "id": "g", "label": "🩺 Surgeon / Doctor", "score": { "pcb_med": 3, "clarity": 2 } },
+        { "id": "h", "label": "🎬 Film Director / Youtuber", "score": { "media_journalism": 3, "design_creative": 2, "clarity": 2 } },
+        { "id": "i", "label": "🏆 Professional Athlete", "score": { "sports_fitness": 3, "clarity": 2 } },
+        { "id": "j", "label": "🚢 Ship Captain / Navy Commander", "score": { "maritime": 3, "defense_forces": 2, "clarity": 2 } }
+      ]
+    },
+    {
+      "id": "q38",
+      "round": "Passions",
+      "type": "single",
+      "prompt": "In a documentary, you'd choose to watch:",
+      "options": [
+        { "id": "a", "label": "🔧 How cars/machines are made", "score": { "automotive_mech": 3, "jee_pcm": 1 } },
+        { "id": "b", "label": "✈️ Fighter jets / aircraft carriers", "score": { "aviation": 2, "defense_forces": 2 } },
+        { "id": "c", "label": "🚀 Space missions / astronauts", "score": { "aviation": 2, "jee_pcm": 2, "research_academia": 1 } },
+        { "id": "d", "label": "🪖 Military operations / war stories", "score": { "defense_forces": 3 } },
+        { "id": "e", "label": "🧠 Human brain / psychology", "score": { "psychology": 3, "pcb_med": 1 } },
+        { "id": "f", "label": "💼 Business empires / billionaires", "score": { "commerce": 3 } },
+        { "id": "g", "label": "🌾 Nature / farming / environment", "score": { "agriculture": 3, "pcb_med": 1 } },
+        { "id": "h", "label": "⚖️ Crime / legal cases", "score": { "law_legal": 3 } }
+      ]
+    },
+    {
+      "id": "q39",
+      "round": "Passions",
+      "type": "single",
+      "prompt": "What would you love to understand deeply?",
+      "options": [
+        { "id": "a", "label": "⚙️ Engines & transmissions", "score": { "automotive_mech": 3, "jee_pcm": 2 } },
+        { "id": "b", "label": "💻 AI & machine learning", "score": { "coding_it": 3, "jee_pcm": 1 } },
+        { "id": "c", "label": "🧬 Human body & diseases", "score": { "pcb_med": 3 } },
+        { "id": "d", "label": "📈 Stock markets & finance", "score": { "commerce": 3 } },
+        { "id": "e", "label": "🎨 Design principles & art", "score": { "design_creative": 3 } },
+        { "id": "f", "label": "✈️ Aerodynamics & flight", "score": { "aviation": 3, "jee_pcm": 2 } },
+        { "id": "g", "label": "🧠 Human mind & behavior", "score": { "psychology": 3 } },
+        { "id": "h", "label": "⚖️ Constitution & laws", "score": { "law_legal": 3, "upsc_civil": 2 } }
+      ]
+    },
+    {
+      "id": "q40",
+      "round": "Passions",
+      "type": "single",
+      "prompt": "If you had ₹50 lakhs, you'd:",
+      "options": [
+        { "id": "a", "label": "🏎️ Buy dream car / bike", "score": { "automotive_mech": 3 } },
+        { "id": "b", "label": "🏢 Start a business", "score": { "commerce": 3 } },
+        { "id": "c", "label": "🎓 Study abroad", "score": { "research_academia": 2, "jee_pcm": 1, "coding_it": 1 } },
+        { "id": "d", "label": "🎨 Build a creative studio", "score": { "design_creative": 3, "media_journalism": 1 } },
+        { "id": "e", "label": "✈️ Travel the world", "score": { "hospitality": 3, "aviation": 1 } },
+        { "id": "f", "label": "🏠 Buy property / invest", "score": { "commerce": 2, "govt_defense": 1 } },
+        { "id": "g", "label": "🎓 Get pilot license / special training", "score": { "aviation": 3, "sports_fitness": 1 } }
+      ]
+    }
+  ]
+}
