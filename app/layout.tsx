@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import ThemeToggle from '@/app/components/ThemeToggle';
 
 export const metadata: Metadata = {
   title: 'Career Discovery Game | Find Your Path',
@@ -13,8 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <body className="bg-pattern min-h-screen safe-bottom">
+        <ThemeToggle />
         {children}
       </body>
     </html>
