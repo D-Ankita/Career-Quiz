@@ -17,11 +17,13 @@
 
 html {
   scroll-behavior: smooth;
+  background: #0a0a1a;
+  color-scheme: dark;
 }
 
 body {
   font-family: var(--font-space);
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  background: #0a0a1a;
   min-height: 100vh;
   color: white;
   -webkit-font-smoothing: antialiased;
@@ -54,10 +56,12 @@ body {
 
 /* Animated background pattern */
 .bg-pattern {
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(78, 205, 196, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0a1a 0%, #0f1629 40%, #1a1a3e 100%);
+  background-attachment: fixed;
 }
 
 /* Glass morphism */
