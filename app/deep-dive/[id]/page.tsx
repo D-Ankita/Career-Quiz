@@ -348,6 +348,71 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
       { id: 'e', label: '🤷 I\'m not actually that interested in commerce', signals: { commerce: -3, clarity: 2 } },
     ]
   },
+
+  // AUTOMOTIVE DEALERSHIP/RETAIL - Specific questions for car business interest
+  {
+    id: 'dd26',
+    category: 'commerce_validation',
+    prompt: '🚗 Imagine you own a car dealership. What would EXCITE you most about the job?',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '💰 Negotiating deals - buying cars at ₹8L, selling at ₹10L', signals: { automotive_business: 3, commerce: 2, passion: 1 } },
+      { id: 'b', label: '🤝 Meeting customers, understanding what they want', signals: { automotive_business: 2, commerce: 2 } },
+      { id: 'c', label: '📊 Managing inventory - which cars sell fast, which don\'t', signals: { automotive_business: 2, financial_interest: 2 } },
+      { id: 'd', label: '🏢 Building a brand - "People should think of MY showroom first"', signals: { automotive_business: 3, passion: 2 } },
+      { id: 'e', label: '🤷 Honestly, running a dealership doesn\'t excite me much', signals: { automotive_business: -2 } },
+    ]
+  },
+  {
+    id: 'dd27',
+    category: 'commerce_validation',
+    prompt: 'A customer wants to buy a car but their budget is ₹2L short. What would you do?',
+    context: 'This tests your sales/business mindset',
+    options: [
+      { id: 'a', label: '💳 Explain financing options - EMI, loan, exchange bonus', signals: { automotive_business: 3, financial_interest: 2 } },
+      { id: 'b', label: '🚗 Show them a different car within budget', signals: { automotive_business: 2, commerce: 1 } },
+      { id: 'c', label: '📞 Tell them to come back when they have the money', signals: { automotive_business: -1 } },
+      { id: 'd', label: '🤝 Negotiate with your manager for a special discount', signals: { automotive_business: 2, commerce: 2, risk_tolerance: 1 } },
+    ]
+  },
+  {
+    id: 'dd28',
+    category: 'commerce_validation',
+    prompt: 'Which automotive business sounds MOST interesting to you?',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '🏢 New car dealership (Maruti, Hyundai, Tata authorized)', signals: { automotive_business: 3, commerce: 2 } },
+      { id: 'b', label: '🔄 Used car business (Cars24, Spinny style)', signals: { automotive_business: 3, risk_tolerance: 2, commerce: 2 } },
+      { id: 'c', label: '🔧 Car accessories & modification shop', signals: { automotive_engineering: 2, automotive_business: 1 } },
+      { id: 'd', label: '📱 Car comparison website/app (like CarDekho, CarWale)', signals: { automotive_business: 2, commerce: 2, passion: 1 } },
+      { id: 'e', label: '🏎️ Luxury/sports car imports (Porsche, Ferrari)', signals: { automotive_business: 3, passion: 2 } },
+    ]
+  },
+  {
+    id: 'dd29',
+    category: 'commerce_validation',
+    prompt: 'Do you know the approximate on-road price of a Maruti Swift vs Hyundai i20 vs Tata Altroz?',
+    context: 'Testing car market awareness',
+    options: [
+      { id: 'a', label: '✅ Yes! I follow car prices regularly', signals: { automotive_business: 3, passion: 2 } },
+      { id: 'b', label: '🤔 Roughly - I know Swift is around ₹7-9L', signals: { automotive_business: 2, passion: 1 } },
+      { id: 'c', label: '❓ Not really - I know the cars but not prices', signals: { automotive_engineering: 1 } },
+      { id: 'd', label: '❌ No idea - I don\'t follow car prices', signals: { automotive_business: -1 } },
+    ]
+  },
+  {
+    id: 'dd30',
+    category: 'commerce_validation',
+    prompt: 'Final automotive question: If you could work at any car company, which role?',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '🏢 Sales Manager at a dealership - hitting targets, managing team', signals: { automotive_business: 3, commerce: 2 } },
+      { id: 'b', label: '📊 Regional Business Head - managing 10+ dealerships', signals: { automotive_business: 3, commerce: 3, clarity: 1 } },
+      { id: 'c', label: '🔧 R&D Engineer at Tata Motors - designing new cars', signals: { automotive_engineering: 3, engineering: 3 } },
+      { id: 'd', label: '📈 Marketing Head - launching new models, advertising', signals: { automotive_business: 2, commerce: 2, passion: 1 } },
+      { id: 'e', label: '🏎️ Start my own multi-brand dealership someday', signals: { automotive_business: 3, risk_tolerance: 3, commerce: 2, passion: 2 } },
+    ]
+  },
 ];
 
 interface DeepDiveResults {
