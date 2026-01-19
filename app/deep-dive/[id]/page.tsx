@@ -76,10 +76,10 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
   {
     id: 'dd4',
     category: 'stress_test',
-    prompt: 'Scenario: You scored 65% in a practice JEE test. Your rank: 50,000. How do you feel?',
-    context: 'This is a realistic JEE scenario',
+    prompt: 'Scenario: You scored 65% in a CAT mock test. Your percentile: 70. How do you feel?',
+    context: 'This is a realistic MBA entrance scenario',
     options: [
-      { id: 'a', label: '💪 Motivated - I\'ll analyze mistakes and improve', signals: { engineering: 2, clarity: 1 } },
+      { id: 'a', label: '💪 Motivated - I\'ll analyze mistakes and improve', signals: { commerce: 2, clarity: 1 } },
       { id: 'b', label: '😰 Stressed - What will people say?', signals: { stress_flag: 3 } },
       { id: 'c', label: '🤔 Questioning - Is this the right path for me?', signals: { clarity: 2, stress_flag: 1 } },
       { id: 'd', label: '😤 Frustrated - I worked hard, why didn\'t it show?', signals: { stress_flag: 2 } },
@@ -88,7 +88,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
   {
     id: 'dd5',
     category: 'stress_test',
-    prompt: 'Your parents are discussing your career with relatives. They\'re comparing you to a cousin in IIT. You:',
+    prompt: 'Your parents are discussing your career with relatives. They\'re comparing you to a cousin who\'s a CA. You:',
     options: [
       { id: 'a', label: '😊 Feel confident - I\'ll prove myself my own way', signals: { clarity: 2 } },
       { id: 'b', label: '😤 Get annoyed - Why compare?', signals: { stress_flag: 1 } },
@@ -99,11 +99,11 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
   {
     id: 'dd6',
     category: 'stress_test',
-    prompt: 'Imagine: 6 months into JEE prep. Daily 8-hour study. Limited friend time. No games. How realistic is this for you?',
+    prompt: 'Imagine: 6 months into CA/MBA prep. Daily 5-6 hour study. Limited friend time. Focused weekends. How realistic is this for you?',
     options: [
-      { id: 'a', label: '✅ Doable - I can sacrifice for my goal', signals: { engineering: 2, passion: 1 } },
+      { id: 'a', label: '✅ Doable - I can sacrifice for my goal', signals: { commerce: 2, passion: 1 } },
       { id: 'b', label: '😬 Tough - I\'d struggle but try', signals: { stress_flag: 1 } },
-      { id: 'c', label: '❌ Unrealistic - I need balance', signals: { stress_flag: 2, commerce: 1 } },
+      { id: 'c', label: '❌ Unrealistic - I need balance', signals: { stress_flag: 2 } },
       { id: 'd', label: '🤔 Not sure - Never tried this intensity', signals: { clarity: -1 } },
     ]
   },
@@ -115,11 +115,11 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     prompt: 'Which conversation would you LOVE to have with an expert?',
     allowCustom: true,
     options: [
-      { id: 'a', label: '🔧 "How did you design this car engine?"', signals: { automotive_engineering: 3, engineering: 2 } },
-      { id: 'b', label: '💰 "How did you build a ₹100Cr business?"', signals: { commerce: 3, passion: 2 } },
-      { id: 'c', label: '📈 "How does the stock market really work?"', signals: { commerce: 3 } },
-      { id: 'd', label: '🏎️ "What\'s it like being an F1 engineer?"', signals: { automotive_engineering: 2, passion: 2 } },
-      { id: 'e', label: '🚗 "How do you decide car pricing strategies?"', signals: { automotive_business: 3, commerce: 2 } },
+      { id: 'a', label: '💰 "How did you build a ₹100Cr business?"', signals: { commerce: 3, passion: 2 } },
+      { id: 'b', label: '📈 "How does the stock market really work?"', signals: { commerce: 3, financial_interest: 2 } },
+      { id: 'c', label: '🚗 "How do you decide car pricing strategies?"', signals: { automotive_business: 3, commerce: 2 } },
+      { id: 'd', label: '🏢 "How did you grow your dealership network?"', signals: { automotive_business: 3, commerce: 2, passion: 1 } },
+      { id: 'e', label: '🌟 All of the above - I\'m curious about everything!', signals: { commerce: 3, automotive_business: 2, passion: 3 } },
     ]
   },
   {
