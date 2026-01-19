@@ -426,17 +426,17 @@ export default function ParentReportPage() {
       >
         <div className="p-8 rounded-2xl bg-gradient-to-r from-ocean to-lavender text-center">
           <h3 className="text-2xl font-bold text-white mb-2">
-            Ready for the Deep Dive? 🔍
+            Deep Dive Complete! 🎯
           </h3>
           <p className="text-white/80 mb-6">
-            A focused 15-question quiz to confirm Gagan's true calling
+            Gagan has completed the 40-question deep dive quiz. View the detailed analysis.
           </p>
           <a
-            href={`/deep-dive/${reportId}`}
+            href={`/reports/deep-dive/${reportId}`}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-ocean font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105"
           >
-            <BookOpen className="w-5 h-5" />
-            Start Deep Dive Quiz
+            <BarChart3 className="w-5 h-5" />
+            View Deep Dive Report
             <ArrowRight className="w-5 h-5" />
           </a>
         </div>

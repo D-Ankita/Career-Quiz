@@ -1,0 +1,224 @@
+{
+  "type": "deep_dive_quiz",
+  "studentName": "Gagan",
+  "reportId": "gagan-2026",
+  "timestamp": "2026-01-19T11:10:05.078Z",
+  "scores": {
+    "commerce": 58,
+    "engineering": 0,
+    "automotive_business": 29,
+    "automotive_engineering": 4,
+    "stress_flags": 1,
+    "clarity": 18,
+    "passion": 30,
+    "risk_tolerance": 13,
+    "financial_interest": 9
+  },
+  "analysis": {
+    "primaryPath": "Commerce/Business",
+    "automotivePath": "Automotive Business",
+    "stressLevel": "Low"
+  },
+  "answers": {
+    "dd1": {
+      "question": "You have a free Sunday. Which would you ACTUALLY do?",
+      "answer": "📺 Watch YouTube about business/money/startups",
+      "isCustom": false
+    },
+    "dd2": {
+      "question": "When you think about cars, what EXCITES you more?",
+      "answer": "💰 The business - who sells, profits, market trends",
+      "isCustom": false
+    },
+    "dd3": {
+      "question": "If Elon Musk offered you a job, which role would you choose?",
+      "answer": "💼 CFO - managing Tesla's finances",
+      "isCustom": false
+    },
+    "dd4": {
+      "question": "Scenario: You scored 65% in a CAT mock test. Your percentile: 70. How do you feel?",
+      "answer": "💪 Motivated - I'll analyze mistakes and improve",
+      "isCustom": false
+    },
+    "dd5": {
+      "question": "Your parents are discussing your career with relatives. They're comparing you to a cousin who's a CA. You:",
+      "answer": "😤 Get annoyed - Why compare?",
+      "isCustom": false
+    },
+    "dd6": {
+      "question": "Imagine: 6 months into CA/MBA prep. Daily 5-6 hour study. Limited friend time. Focused weekends. How realistic is this for you?",
+      "answer": "😬 Tough - I'd struggle but try",
+      "isCustom": false
+    },
+    "dd7": {
+      "question": "Which conversation would you LOVE to have with an expert?",
+      "answer": "🌟 All of the above - I'm curious about everything!",
+      "isCustom": false
+    },
+    "dd8": {
+      "question": "You're starting a YouTube channel. What's your content about?",
+      "answer": "🔧 DIY car modifications & engine builds",
+      "isCustom": false
+    },
+    "dd9": {
+      "question": "What makes you lose track of time? (Pick the most honest answer)",
+      "answer": "All except 1",
+      "isCustom": true
+    },
+    "dd10": {
+      "question": "Be brutally honest: Why is JEE on your radar?",
+      "answer": "🏫 IIT tag = good placements = high salary",
+      "isCustom": false
+    },
+    "dd11": {
+      "question": "If Commerce stream led to the same salary as IIT, would you still choose PCM?",
+      "answer": "❌ No - I'd switch to Commerce in a heartbeat",
+      "isCustom": false
+    },
+    "dd12": {
+      "question": "You're 30 years old. Which day sounds like YOUR ideal life?",
+      "answer": "2 n 5",
+      "isCustom": true
+    },
+    "dd13": {
+      "question": "Rank these: What matters MOST to you in a career?",
+      "answer": "🕊️ Freedom & flexibility",
+      "isCustom": false
+    },
+    "dd14": {
+      "question": "Which failure would hurt you MORE?",
+      "answer": "😔 Being stuck in a career I don't enjoy",
+      "isCustom": false
+    },
+    "dd15": {
+      "question": "If you could send a message to yourself 5 years from now, what would it be?",
+      "answer": "\"Take more risks - you're capable\"",
+      "isCustom": false
+    },
+    "dd16": {
+      "question": "Which commerce career path excites you MOST?",
+      "answer": "3 n 4",
+      "isCustom": true
+    },
+    "dd17": {
+      "question": "Your friend has ₹10,000 to invest. They ask your advice. You:",
+      "answer": "🔍 Research different options before answering",
+      "isCustom": false
+    },
+    "dd18": {
+      "question": "Scenario: You start a small business. First month = ₹5,000 loss. What do you do?",
+      "answer": "💪 Expected this - first months are always hard",
+      "isCustom": false
+    },
+    "dd19": {
+      "question": "Do you understand these terms? Profit margin, ROI, market cap, P/E ratio",
+      "answer": "📚 Some of them - learning more",
+      "isCustom": false
+    },
+    "dd20": {
+      "question": "Which book/content would you genuinely read on a weekend?",
+      "answer": "📘 \"Rich Dad Poor Dad\" / \"Psychology of Money\"",
+      "isCustom": false
+    },
+    "dd21": {
+      "question": "CA preparation = 3-4 years, 8 papers, 50% fail rate. Your reaction?",
+      "answer": "🤔 Tough, but if I'm interested, I'll manage",
+      "isCustom": false
+    },
+    "dd22": {
+      "question": "Which scenario sounds more FUN to you?",
+      "answer": "🏎️ Test-driving different cars and comparing specs",
+      "isCustom": false
+    },
+    "dd23": {
+      "question": "If you could shadow someone for a week, who would it be?",
+      "answer": "🚀 A startup founder building their company",
+      "isCustom": false
+    },
+    "dd24": {
+      "question": "You won ₹1 Lakh in a competition. What do you do?",
+      "answer": "📈 Invest in stocks/mutual funds",
+      "isCustom": false
+    },
+    "dd25": {
+      "question": "Final commerce check: What genuinely interests you about business/commerce?",
+      "answer": "💰 The money - high earning potential",
+      "isCustom": false
+    },
+    "dd26": {
+      "question": "🚗 Imagine you own a car dealership. What would EXCITE you most about the job?",
+      "answer": "🏢 Building a brand - \"People should think of MY showroom first\"",
+      "isCustom": false
+    },
+    "dd27": {
+      "question": "A customer wants to buy a car but their budget is ₹2L short. What would you do?",
+      "answer": "💳 Explain financing options - EMI, loan, exchange bonus",
+      "isCustom": false
+    },
+    "dd28": {
+      "question": "Which automotive business sounds MOST interesting to you?",
+      "answer": "🏎️ Luxury/sports car imports (Porsche, Ferrari)",
+      "isCustom": false
+    },
+    "dd29": {
+      "question": "Do you know the approximate on-road price of a Maruti Swift vs Hyundai i20 vs Tata Altroz?",
+      "answer": "✅ Yes! I follow car prices regularly",
+      "isCustom": false
+    },
+    "dd30": {
+      "question": "Final automotive question: If you could work at any car company, which role?",
+      "answer": "🏎️ Start my own multi-brand dealership someday",
+      "isCustom": false
+    },
+    "dd31": {
+      "question": "📚 Business mindset requires DEEP learning - finance, marketing, negotiation, people skills. Your reaction?",
+      "answer": "🔥 Excited! I love learning new things, especially about business",
+      "isCustom": false
+    },
+    "dd32": {
+      "question": "📉 Hard truth: Business is volatile. Aaj profit, kal loss. Kabhi ₹1L kamao, kabhi ₹50K loss. Ready?",
+      "answer": "💪 Yes! That's what makes it exciting - the ups and downs",
+      "isCustom": false
+    },
+    "dd33": {
+      "question": "🗣️ In sales, you need to CONVINCE people to buy. Some will say NO 10 times. How do you feel about this?",
+      "answer": "👍 I can learn to handle rejection, it's part of the game",
+      "isCustom": false
+    },
+    "dd34": {
+      "question": "🎯 Reality: College khatam hote hi showroom nahi milega. Starting from ZERO. Efforts lagane padenge. Your feeling?",
+      "answer": "👍 I understand - everyone starts somewhere",
+      "isCustom": false
+    },
+    "dd35": {
+      "question": "🔍 Opportunities dhundna TERA skill hoga. Koi spoon-feed nahi karega. Proactive banana padega. Ready?",
+      "answer": "💯 Yes! I'll find opportunities myself - network, apply, hustle",
+      "isCustom": false
+    },
+    "dd36": {
+      "question": "🏢 Would you do an UNPAID internship at a car dealership for 2-3 months to learn the ground reality?",
+      "answer": "🤔 Yes, if it leads to real learning and connections",
+      "isCustom": false
+    },
+    "dd37": {
+      "question": "📋 Challenge: Pick any car (Creta/Thar/Nexon) and write: price, competitors, why people buy it. Would you enjoy this?",
+      "answer": "🔥 YES! I already know this stuff, sounds fun!",
+      "isCustom": false
+    },
+    "dd38": {
+      "question": "📱 Challenge: Create a simple Instagram Reel idea about \"cars + pricing + trends\". Your reaction?",
+      "answer": "🎬 Already have ideas! \"Top 5 cars under ₹10L\" type content",
+      "isCustom": false
+    },
+    "dd39": {
+      "question": "💼 If you had ₹1 Lakh to start a small business TODAY, what would you do?",
+      "answer": "💰 I'd save it / invest it, not start a business",
+      "isCustom": false
+    },
+    "dd40": {
+      "question": "⏰ Final reality check: Success takes TIME. 5-10 years of consistent effort. No shortcuts. How does this feel?",
+      "answer": "💪 I'm in for the long game - patience and persistence",
+      "isCustom": false
+    }
+  }
+}
