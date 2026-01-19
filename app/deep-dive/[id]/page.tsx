@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ChevronRight, ChevronLeft, Check, Brain, Target, 
-  Lightbulb, Heart, Zap, Shield, TrendingUp
+  Lightbulb, Heart, Zap, Shield, Download, Loader2, CheckCircle
 } from 'lucide-react';
 
 interface DeepDiveQuestion {
@@ -13,6 +13,7 @@ interface DeepDiveQuestion {
   category: 'alignment' | 'stress_test' | 'passion_probe' | 'reality_check' | 'values';
   prompt: string;
   context?: string;
+  allowCustom?: boolean; // Allow text input
   options: {
     id: string;
     label: string;
@@ -29,12 +30,13 @@ interface DeepDiveQuestion {
 }
 
 const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
-  // ALIGNMENT QUESTIONS - Do actions match stated interests?
+  // ALIGNMENT QUESTIONS
   {
     id: 'dd1',
     category: 'alignment',
     prompt: 'You have a free Sunday. Which would you ACTUALLY do?',
     context: 'Be honest - not what sounds impressive',
+    allowCustom: true,
     options: [
       { id: 'a', label: '📺 Watch YouTube about business/money/startups', signals: { commerce: 3, clarity: 1 } },
       { id: 'b', label: '🔧 Take apart an old gadget to see how it works', signals: { engineering: 3, automotive_engineering: 2 } },
@@ -47,6 +49,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     id: 'dd2',
     category: 'alignment',
     prompt: 'When you think about cars, what EXCITES you more?',
+    allowCustom: true,
     options: [
       { id: 'a', label: '⚙️ The engineering - how engines, transmissions work', signals: { automotive_engineering: 3, engineering: 2 } },
       { id: 'b', label: '💰 The business - who sells, profits, market trends', signals: { automotive_business: 3, commerce: 2 } },
@@ -58,6 +61,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     id: 'dd3',
     category: 'alignment',
     prompt: 'If Elon Musk offered you a job, which role would you choose?',
+    allowCustom: true,
     options: [
       { id: 'a', label: '🔋 Battery Engineer - designing EV powertrains', signals: { engineering: 3, automotive_engineering: 3 } },
       { id: 'b', label: '📊 Business Analyst - market strategy & sales', signals: { commerce: 3, automotive_business: 2 } },
@@ -66,7 +70,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     ]
   },
 
-  // STRESS TEST - Can you handle pressure scenarios?
+  // STRESS TEST
   {
     id: 'dd4',
     category: 'stress_test',
@@ -102,11 +106,12 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     ]
   },
 
-  // PASSION PROBE - Finding genuine interests
+  // PASSION PROBE
   {
     id: 'dd7',
     category: 'passion_probe',
     prompt: 'Which conversation would you LOVE to have with an expert?',
+    allowCustom: true,
     options: [
       { id: 'a', label: '🔧 "How did you design this car engine?"', signals: { automotive_engineering: 3, engineering: 2 } },
       { id: 'b', label: '💰 "How did you build a ₹100Cr business?"', signals: { commerce: 3, passion: 2 } },
@@ -119,6 +124,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     id: 'dd8',
     category: 'passion_probe',
     prompt: 'You\'re starting a YouTube channel. What\'s your content about?',
+    allowCustom: true,
     options: [
       { id: 'a', label: '🔧 DIY car modifications & engine builds', signals: { automotive_engineering: 3 } },
       { id: 'b', label: '💼 Business ideas & money tips for students', signals: { commerce: 3, passion: 2 } },
@@ -131,6 +137,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     id: 'dd9',
     category: 'passion_probe',
     prompt: 'What makes you lose track of time? (Pick the most honest answer)',
+    allowCustom: true,
     options: [
       { id: 'a', label: '📐 Solving a challenging math/physics problem', signals: { engineering: 3, passion: 2 } },
       { id: 'b', label: '💡 Thinking about business ideas', signals: { commerce: 3, passion: 2 } },
@@ -140,7 +147,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     ]
   },
 
-  // REALITY CHECK - Understanding true motivations
+  // REALITY CHECK
   {
     id: 'dd10',
     category: 'reality_check',
@@ -168,6 +175,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     id: 'dd12',
     category: 'reality_check',
     prompt: 'You\'re 30 years old. Which day sounds like YOUR ideal life?',
+    allowCustom: true,
     options: [
       { id: 'a', label: '🔬 In a lab, solving complex engineering problems', signals: { engineering: 3, passion: 2 } },
       { id: 'b', label: '💼 Running my own business, meeting clients', signals: { commerce: 3, passion: 2 } },
@@ -177,7 +185,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     ]
   },
 
-  // VALUES - What matters most
+  // VALUES
   {
     id: 'dd13',
     category: 'values',
@@ -206,6 +214,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     id: 'dd15',
     category: 'values',
     prompt: 'Last question: If you could send a message to yourself 5 years from now, what would it be?',
+    allowCustom: true,
     options: [
       { id: 'a', label: '"Trust the process - hard work pays off"', signals: { engineering: 1, clarity: 1 } },
       { id: 'b', label: '"Follow your gut, not others\' expectations"', signals: { commerce: 1, clarity: 2 } },
@@ -225,15 +234,28 @@ interface DeepDiveResults {
   passion: number;
 }
 
+interface AnswerData {
+  selectedOption?: string;
+  customText?: string;
+}
+
+// Webhook URL
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBHOOK_URL || '';
+
 export default function DeepDivePage() {
   const params = useParams();
   const router = useRouter();
   const reportId = params.id as string;
   
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [answers, setAnswers] = useState<Record<string, AnswerData>>({});
   const [showResults, setShowResults] = useState(false);
   const [direction, setDirection] = useState(1);
+  const [showCustomInput, setShowCustomInput] = useState<Record<string, boolean>>({});
+  
+  // Submit state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const currentQuestion = DEEP_DIVE_QUESTIONS[currentIndex];
   const progress = ((currentIndex + 1) / DEEP_DIVE_QUESTIONS.length) * 100;
@@ -241,15 +263,58 @@ export default function DeepDivePage() {
   const handleSelect = (optionId: string) => {
     setAnswers(prev => ({
       ...prev,
-      [currentQuestion.id]: optionId
+      [currentQuestion.id]: { 
+        ...prev[currentQuestion.id],
+        selectedOption: optionId 
+      }
+    }));
+    // Hide custom input when an option is selected
+    setShowCustomInput(prev => ({ ...prev, [currentQuestion.id]: false }));
+  };
+
+  const handleCustomTextChange = (text: string) => {
+    setAnswers(prev => ({
+      ...prev,
+      [currentQuestion.id]: { 
+        ...prev[currentQuestion.id],
+        customText: text 
+      }
     }));
   };
 
-  const handleNext = () => {
+  const toggleCustomInput = () => {
+    setShowCustomInput(prev => ({ 
+      ...prev, 
+      [currentQuestion.id]: !prev[currentQuestion.id] 
+    }));
+    // Clear selected option when switching to custom
+    if (!showCustomInput[currentQuestion.id]) {
+      setAnswers(prev => ({
+        ...prev,
+        [currentQuestion.id]: { 
+          ...prev[currentQuestion.id],
+          selectedOption: undefined 
+        }
+      }));
+    }
+  };
+
+  const hasAnswer = () => {
+    const answer = answers[currentQuestion.id];
+    if (!answer) return false;
+    if (showCustomInput[currentQuestion.id]) {
+      return answer.customText && answer.customText.trim().length > 0;
+    }
+    return !!answer.selectedOption;
+  };
+
+  const handleNext = async () => {
     if (currentIndex < DEEP_DIVE_QUESTIONS.length - 1) {
       setDirection(1);
       setCurrentIndex(prev => prev + 1);
     } else {
+      // Submit to webhook before showing results
+      await submitToWebhook();
       setShowResults(true);
     }
   };
@@ -272,11 +337,13 @@ export default function DeepDivePage() {
       passion: 0,
     };
 
-    Object.entries(answers).forEach(([qId, optionId]) => {
+    Object.entries(answers).forEach(([qId, answerData]) => {
+      if (!answerData.selectedOption) return; // Skip custom text answers for scoring
+      
       const question = DEEP_DIVE_QUESTIONS.find(q => q.id === qId);
       if (!question) return;
       
-      const option = question.options.find(o => o.id === optionId);
+      const option = question.options.find(o => o.id === answerData.selectedOption);
       if (!option) return;
 
       Object.entries(option.signals).forEach(([key, value]) => {
@@ -289,6 +356,114 @@ export default function DeepDivePage() {
     });
 
     return results;
+  };
+
+  const submitToWebhook = async () => {
+    if (!WEBHOOK_URL) {
+      console.log('Webhook URL not configured');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const results = calculateResults();
+      
+      // Prepare answers for submission
+      const formattedAnswers: Record<string, string> = {};
+      DEEP_DIVE_QUESTIONS.forEach(q => {
+        const answer = answers[q.id];
+        if (answer?.customText) {
+          formattedAnswers[q.id] = `[CUSTOM] ${answer.customText}`;
+        } else if (answer?.selectedOption) {
+          const option = q.options.find(o => o.id === answer.selectedOption);
+          formattedAnswers[q.id] = option?.label || answer.selectedOption;
+        }
+      });
+
+      const payload = {
+        type: 'deep_dive',
+        studentName: 'Gagan',
+        reportId: reportId,
+        timestamp: new Date().toISOString(),
+        commerceScore: results.commerce,
+        engineeringScore: results.engineering,
+        automotiveBusinessScore: results.automotive_business,
+        automotiveEngineeringScore: results.automotive_engineering,
+        stressFlags: results.stress_flags,
+        clarityScore: results.clarity,
+        passionScore: results.passion,
+        primaryPath: results.commerce > results.engineering ? 'Commerce' : 'Engineering',
+        fullAnswersJSON: JSON.stringify(formattedAnswers),
+        fullResultsJSON: JSON.stringify(results),
+      };
+
+      const formBody = Object.entries(payload)
+        .map(([key, value]) => 
+          encodeURIComponent(key) + '=' + encodeURIComponent(String(value))
+        )
+        .join('&');
+
+      await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formBody,
+      });
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Webhook error:', error);
+      setIsSubmitted(true); // Still show as submitted even if there's an error
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const downloadJSON = () => {
+    const results = calculateResults();
+    
+    const formattedAnswers: Record<string, { question: string; answer: string; isCustom: boolean }> = {};
+    DEEP_DIVE_QUESTIONS.forEach(q => {
+      const answer = answers[q.id];
+      if (answer?.customText) {
+        formattedAnswers[q.id] = {
+          question: q.prompt,
+          answer: answer.customText,
+          isCustom: true
+        };
+      } else if (answer?.selectedOption) {
+        const option = q.options.find(o => o.id === answer.selectedOption);
+        formattedAnswers[q.id] = {
+          question: q.prompt,
+          answer: option?.label || answer.selectedOption,
+          isCustom: false
+        };
+      }
+    });
+
+    const exportData = {
+      type: 'deep_dive_quiz',
+      studentName: 'Gagan',
+      reportId: reportId,
+      timestamp: new Date().toISOString(),
+      scores: results,
+      analysis: {
+        primaryPath: results.commerce > results.engineering ? 'Commerce/Business' : 'Engineering/JEE',
+        automotivePath: results.automotive_business > results.automotive_engineering ? 'Automotive Business' : 'Automotive Engineering',
+        stressLevel: results.stress_flags > 5 ? 'High' : results.stress_flags > 2 ? 'Moderate' : 'Low',
+      },
+      answers: formattedAnswers,
+    };
+
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `gagan_deep_dive_${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   const getCategoryIcon = (category: string) => {
@@ -315,9 +490,6 @@ export default function DeepDivePage() {
 
   if (showResults) {
     const results = calculateResults();
-    const maxScore = Math.max(results.commerce, results.engineering);
-    const primaryPath = results.commerce > results.engineering ? 'Commerce/Business' : 'Engineering/JEE';
-    const autoPath = results.automotive_business > results.automotive_engineering ? 'Automotive Business' : 'Automotive Engineering';
 
     return (
       <div className="min-h-screen py-8 md:py-12">
@@ -332,6 +504,21 @@ export default function DeepDivePage() {
           <p className="text-white/60 text-center mb-8">
             Here's what we discovered about Gagan's true interests
           </p>
+
+          {/* Submission Status */}
+          <div className="flex items-center justify-center gap-2 mb-6">
+            {isSubmitting ? (
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-ocean/20 text-ocean">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span className="text-sm">Saving to records...</span>
+              </div>
+            ) : isSubmitted ? (
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 text-emerald-400">
+                <CheckCircle className="w-4 h-4" />
+                <span className="text-sm">Results saved!</span>
+              </div>
+            ) : null}
+          </div>
 
           {/* Primary Finding */}
           <div className="p-6 rounded-2xl bg-gradient-to-r from-ocean/30 to-lavender/30 border border-ocean/30 mb-6">
@@ -378,7 +565,7 @@ export default function DeepDivePage() {
             </div>
           </div>
 
-          {/* Automotive Interest Breakdown */}
+          {/* Automotive Interest */}
           <div className="p-6 rounded-2xl bg-white/5 border border-white/10 mb-6">
             <h2 className="text-xl font-bold text-white mb-4">🚗 Automotive Interest Analysis</h2>
             <div className="grid grid-cols-2 gap-4 mb-4">
@@ -393,13 +580,32 @@ export default function DeepDivePage() {
             </div>
             <p className="text-white/70">
               {results.automotive_business > results.automotive_engineering
-                ? '💼 Gagan views cars from a BUSINESS lens - pricing, sales, market. Consider: Car dealerships, Auto finance, EV startups, Automotive marketing.'
+                ? '💼 Gagan views cars from a BUSINESS lens - pricing, sales, market.'
                 : results.automotive_engineering > results.automotive_business
-                ? '🔧 Gagan is interested in HOW cars work - engines, design, technology. Consider: Mechanical Engineering, Automobile Engineering.'
+                ? '🔧 Gagan is interested in HOW cars work - engines, design, technology.'
                 : '🤔 Balanced interest - could explore both paths.'
               }
             </p>
           </div>
+
+          {/* Custom Answers Section */}
+          {Object.entries(answers).some(([, a]) => a.customText) && (
+            <div className="p-6 rounded-2xl bg-purple-500/10 border border-purple-500/30 mb-6">
+              <h2 className="text-xl font-bold text-white mb-4">✍️ Custom Answers</h2>
+              <div className="space-y-4">
+                {DEEP_DIVE_QUESTIONS.map(q => {
+                  const answer = answers[q.id];
+                  if (!answer?.customText) return null;
+                  return (
+                    <div key={q.id} className="p-4 rounded-xl bg-white/5">
+                      <p className="text-white/60 text-sm mb-1">{q.prompt}</p>
+                      <p className="text-white italic">"{answer.customText}"</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Stress & Clarity */}
           <div className="grid md:grid-cols-2 gap-4 mb-6">
@@ -407,12 +613,6 @@ export default function DeepDivePage() {
               <h3 className="text-lg font-bold text-white mb-2">Stress Indicators</h3>
               <p className={`text-3xl font-bold ${results.stress_flags > 5 ? 'text-red-400' : 'text-emerald-400'}`}>
                 {results.stress_flags > 5 ? '⚠️ High' : results.stress_flags > 2 ? '😐 Moderate' : '✅ Low'}
-              </p>
-              <p className="text-white/60 text-sm mt-2">
-                {results.stress_flags > 5 
-                  ? 'Multiple stress signals detected. JEE pressure may be challenging.'
-                  : 'Manageable stress levels for competitive exams.'
-                }
               </p>
             </div>
             
@@ -431,69 +631,24 @@ export default function DeepDivePage() {
             </div>
           </div>
 
-          {/* Final Recommendation */}
-          <div className="p-6 rounded-2xl bg-gradient-to-r from-sunset/20 to-coral/20 border border-sunset/30 mb-6">
-            <h2 className="text-xl font-bold text-white mb-4">📋 Recommendation for Parents</h2>
-            
-            {results.commerce > results.engineering + 3 ? (
-              <div className="space-y-3 text-white/80">
-                <p>Based on the deep dive analysis, <strong className="text-white">Commerce stream appears to be a better fit</strong> for Gagan.</p>
-                <p className="font-medium text-ocean">Suggested paths:</p>
-                <ul className="list-disc list-inside space-y-1 text-sm">
-                  <li>Commerce with Maths → CA/CS/CMA → Finance career</li>
-                  <li>BBA → MBA from top B-school</li>
-                  <li>Entrepreneurship in automotive sector (dealerships, startups)</li>
-                  <li>Stock market / Investment banking track</li>
-                </ul>
-                <p className="text-amber-400 text-sm mt-4">
-                  ⚠️ JEE preparation may lead to stress without genuine engineering interest.
-                </p>
-              </div>
-            ) : results.engineering > results.commerce + 3 ? (
-              <div className="space-y-3 text-white/80">
-                <p><strong className="text-white">Engineering interest confirmed!</strong> JEE preparation could be a good choice.</p>
-                <p className="font-medium text-ocean">Next steps:</p>
-                <ul className="list-disc list-inside space-y-1 text-sm">
-                  <li>Start JEE preparation with a reputed coaching</li>
-                  <li>Focus on building problem-solving mindset</li>
-                  <li>If automotive interest is strong, target Mechanical/Auto Engineering</li>
-                </ul>
-              </div>
-            ) : (
-              <div className="space-y-3 text-white/80">
-                <p><strong className="text-white">Mixed signals detected.</strong> More exploration needed before committing.</p>
-                <p className="font-medium text-ocean">Suggestions:</p>
-                <ul className="list-disc list-inside space-y-1 text-sm">
-                  <li>Spend 2-3 months exploring both paths</li>
-                  <li>Try basic JEE material - does problem-solving excite him?</li>
-                  <li>Explore business/startup content - does he engage deeply?</li>
-                  <li>Talk to professionals in both fields</li>
-                </ul>
-              </div>
-            )}
-          </div>
-
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => router.push(`/reports/${reportId}`)}
-              className="px-6 py-3 rounded-xl bg-white/10 text-white hover:bg-white/20 transition-all"
+              onClick={downloadJSON}
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-white hover:bg-white/20 transition-all"
             >
-              ← Back to Full Report
+              <Download className="w-5 h-5" />
+              Download JSON Report
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                setShowResults(false);
-                setCurrentIndex(0);
-                setAnswers({});
-              }}
+              onClick={() => router.push(`/reports/${reportId}`)}
               className="px-6 py-3 rounded-xl bg-ocean text-white hover:bg-ocean/80 transition-all"
             >
-              Retake Deep Dive
+              ← Back to Full Report
             </motion.button>
           </div>
         </motion.div>
@@ -564,18 +719,18 @@ export default function DeepDivePage() {
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleSelect(option.id)}
                   className={`w-full p-4 rounded-xl text-left transition-all border-2 ${
-                    answers[currentQuestion.id] === option.id
+                    answers[currentQuestion.id]?.selectedOption === option.id && !showCustomInput[currentQuestion.id]
                       ? 'bg-ocean/20 border-ocean text-white'
                       : 'bg-white/5 border-white/10 text-white/80 hover:bg-white/10 hover:border-white/20'
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                      answers[currentQuestion.id] === option.id
+                      answers[currentQuestion.id]?.selectedOption === option.id && !showCustomInput[currentQuestion.id]
                         ? 'border-ocean bg-ocean'
                         : 'border-white/30'
                     }`}>
-                      {answers[currentQuestion.id] === option.id && (
+                      {answers[currentQuestion.id]?.selectedOption === option.id && !showCustomInput[currentQuestion.id] && (
                         <Check className="w-4 h-4 text-white" />
                       )}
                     </div>
@@ -583,6 +738,48 @@ export default function DeepDivePage() {
                   </div>
                 </motion.button>
               ))}
+
+              {/* Custom Input Toggle */}
+              {currentQuestion.allowCustom && (
+                <>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={toggleCustomInput}
+                    className={`w-full p-4 rounded-xl text-left transition-all border-2 ${
+                      showCustomInput[currentQuestion.id]
+                        ? 'bg-purple-500/20 border-purple-500 text-white'
+                        : 'bg-white/5 border-dashed border-white/20 text-white/60 hover:bg-white/10'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                        showCustomInput[currentQuestion.id] ? 'border-purple-500 bg-purple-500' : 'border-white/30'
+                      }`}>
+                        {showCustomInput[currentQuestion.id] && <Check className="w-4 h-4 text-white" />}
+                      </div>
+                      <span>✍️ I want to write my own answer...</span>
+                    </div>
+                  </motion.button>
+
+                  {/* Custom Text Input */}
+                  {showCustomInput[currentQuestion.id] && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      className="mt-2"
+                    >
+                      <textarea
+                        value={answers[currentQuestion.id]?.customText || ''}
+                        onChange={(e) => handleCustomTextChange(e.target.value)}
+                        placeholder="Write your own answer here... Be as detailed as you want!"
+                        className="w-full p-4 rounded-xl bg-white/10 border-2 border-purple-500/50 text-white placeholder:text-white/40 focus:outline-none focus:border-purple-500 min-h-[120px] resize-none"
+                        autoFocus
+                      />
+                    </motion.div>
+                  )}
+                </>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>
@@ -607,12 +804,12 @@ export default function DeepDivePage() {
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: answers[currentQuestion.id] ? 1.05 : 1 }}
-            whileTap={{ scale: answers[currentQuestion.id] ? 0.95 : 1 }}
+            whileHover={{ scale: hasAnswer() ? 1.05 : 1 }}
+            whileTap={{ scale: hasAnswer() ? 0.95 : 1 }}
             onClick={handleNext}
-            disabled={!answers[currentQuestion.id]}
+            disabled={!hasAnswer()}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
-              answers[currentQuestion.id]
+              hasAnswer()
                 ? 'bg-gradient-to-r from-ocean to-lavender text-white shadow-lg shadow-ocean/30'
                 : 'bg-white/5 text-white/30 cursor-not-allowed'
             }`}
