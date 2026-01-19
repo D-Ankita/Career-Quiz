@@ -1,0 +1,596 @@
+{
+   "studentName": "Gagan",
+   "educationLevel": "10th_passed",
+   "results": {
+      "trackScores": {
+         "jee_pcm": 20,
+         "pcb_med": 4,
+         "commerce": 35,
+         "coding_it": 10,
+         "design_creative": 12,
+         "govt_defense": 0,
+         "automotive_mech": 19,
+         "upsc_civil": 0,
+         "defense_forces": 7,
+         "aviation": 4,
+         "maritime": 0,
+         "law_legal": 0,
+         "media_journalism": 4,
+         "psychology": 0,
+         "sports_fitness": 9,
+         "research_academia": 3,
+         "agriculture": 3,
+         "hospitality": 4
+      },
+      "trackPercentages": {
+         "jee_pcm": 33,
+         "pcb_med": 13,
+         "commerce": 78,
+         "coding_it": 22,
+         "design_creative": 22,
+         "govt_defense": 0,
+         "automotive_mech": 38,
+         "upsc_civil": 0,
+         "defense_forces": 23,
+         "aviation": 16,
+         "maritime": 0,
+         "law_legal": 0,
+         "media_journalism": 20,
+         "psychology": 0,
+         "sports_fitness": 45,
+         "research_academia": 15,
+         "agriculture": 15,
+         "hospitality": 27
+      },
+      "meterScores": {
+         "routineTolerance": 10,
+         "stressTolerance": 5,
+         "clarity": 10
+      },
+      "confidence": 10,
+      "riskFlags": [],
+      "streamRecommendation": "PCM",
+      "jeeRecommendation": "GO",
+      "topTracks": [
+         {
+            "track": "commerce",
+            "score": 35,
+            "percentage": 78
+         },
+         {
+            "track": "jee_pcm",
+            "score": 20,
+            "percentage": 33
+         },
+         {
+            "track": "automotive_mech",
+            "score": 19,
+            "percentage": 38
+         },
+         {
+            "track": "design_creative",
+            "score": 12,
+            "percentage": 22
+         },
+         {
+            "track": "coding_it",
+            "score": 10,
+            "percentage": 22
+         }
+      ],
+      "careerPaths": [
+         {
+            "track": "commerce",
+            "name": "Commerce / Business",
+            "percentage": 78,
+            "description": "Business, finance, and entrepreneurship",
+            "careers": [
+               "CA",
+               "Entrepreneur",
+               "Investment Banker",
+               "CFO",
+               "Consultant"
+            ],
+            "exams": [
+               "CA Foundation",
+               "CS",
+               "CMA",
+               "CAT",
+               "CLAT"
+            ],
+            "colleges": [
+               "SRCC",
+               "Hindu College",
+               "Christ University",
+               "IIMs"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "sports_fitness",
+            "name": "Sports / Fitness",
+            "percentage": 45,
+            "description": "Athletics, sports management, fitness training",
+            "careers": [
+               "Professional Athlete",
+               "Sports Manager",
+               "Fitness Trainer",
+               "Sports Analyst"
+            ],
+            "exams": [
+               "Sports Authority Tests",
+               "BPES",
+               "SAI"
+            ],
+            "colleges": [
+               "LNIPE Gwalior",
+               "NSNIS Patiala",
+               "SAI Centers"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "automotive_mech",
+            "name": "Automotive / Mechanical",
+            "percentage": 38,
+            "description": "Cars, engines, machines, and hands-on engineering",
+            "careers": [
+               "Automotive Engineer",
+               "F1 Engineer",
+               "EV Specialist",
+               "Mechanical Designer"
+            ],
+            "exams": [
+               "JEE (for Mech)",
+               "GATE ME"
+            ],
+            "colleges": [
+               "IIT Delhi",
+               "IIT Bombay",
+               "VIT",
+               "Manipal",
+               "BITS"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "jee_pcm",
+            "name": "Engineering / JEE",
+            "percentage": 33,
+            "description": "Technical problem-solving, mathematics, and physics",
+            "careers": [
+               "Engineer",
+               "IIT Graduate",
+               "Tech Lead",
+               "Researcher"
+            ],
+            "exams": [
+               "JEE Main",
+               "JEE Advanced",
+               "BITSAT",
+               "State CETs"
+            ],
+            "colleges": [
+               "IITs",
+               "NITs",
+               "BITS Pilani",
+               "IIITs"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "defense_forces",
+            "name": "Armed Forces",
+            "percentage": 23,
+            "description": "Army, Navy, Air Force - serve the nation",
+            "careers": [
+               "Army Officer",
+               "Navy Officer",
+               "Air Force Officer",
+               "Para Commando"
+            ],
+            "exams": [
+               "NDA",
+               "CDS",
+               "AFCAT",
+               "SSB Interview"
+            ],
+            "colleges": [
+               "NDA Khadakwasla",
+               "IMA Dehradun",
+               "OTA Chennai",
+               "AFA Hyderabad"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "coding_it",
+            "name": "Coding / IT",
+            "percentage": 22,
+            "description": "Software development and technology",
+            "careers": [
+               "Software Engineer",
+               "Data Scientist",
+               "AI/ML Engineer",
+               "Startup Founder"
+            ],
+            "exams": [
+               "JEE (for CS)",
+               "GATE",
+               "Coding interviews"
+            ],
+            "colleges": [
+               "IITs",
+               "IIIT Hyderabad",
+               "BITS",
+               "NITs"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "design_creative",
+            "name": "Design / Creative",
+            "percentage": 22,
+            "description": "Visual arts, design, and creative expression",
+            "careers": [
+               "UI/UX Designer",
+               "Animator",
+               "Fashion Designer",
+               "Architect",
+               "Content Creator"
+            ],
+            "exams": [
+               "NID DAT",
+               "NIFT",
+               "UCEED",
+               "CEED"
+            ],
+            "colleges": [
+               "NID",
+               "NIFT",
+               "Srishti",
+               "IDC IIT Bombay"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "aviation",
+            "name": "Aviation / Aerospace",
+            "percentage": 16,
+            "description": "Aircraft, pilots, aerospace engineering",
+            "careers": [
+               "Commercial Pilot",
+               "Aerospace Engineer",
+               "ATC Officer",
+               "Aircraft Designer"
+            ],
+            "exams": [
+               "DGCA CPL",
+               "JEE (Aerospace)",
+               "IGRUA"
+            ],
+            "colleges": [
+               "IIT Bombay (Aero)",
+               "IIT Kanpur",
+               "IIST",
+               "Flying Schools"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "agriculture",
+            "name": "Agriculture / Agritech",
+            "percentage": 15,
+            "description": "Farming, agricultural science, food technology",
+            "careers": [
+               "Agricultural Scientist",
+               "Agripreneur",
+               "Food Technologist",
+               "Agronomist"
+            ],
+            "exams": [
+               "ICAR AIEEA",
+               "State Agri Entrance",
+               "IARI"
+            ],
+            "colleges": [
+               "IARI Delhi",
+               "TNAU",
+               "PAU",
+               "GBPUAT"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "pcb_med",
+            "name": "Medical / Biology",
+            "percentage": 13,
+            "description": "Healthcare, life sciences, and helping people",
+            "careers": [
+               "Doctor",
+               "Surgeon",
+               "Dentist",
+               "Pharmacist",
+               "Researcher"
+            ],
+            "exams": [
+               "NEET UG",
+               "NEET PG",
+               "AIIMS",
+               "JIPMER"
+            ],
+            "colleges": [
+               "AIIMS",
+               "CMC Vellore",
+               "JIPMER",
+               "Govt Medical Colleges"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "maritime",
+            "name": "Maritime / Merchant Navy",
+            "percentage": 0,
+            "description": "Ships, oceans, maritime trade",
+            "careers": [
+               "Merchant Navy Officer",
+               "Marine Engineer",
+               "Ship Captain",
+               "Port Manager"
+            ],
+            "exams": [
+               "IMU CET",
+               "TMISAT",
+               "JEE (Naval Architecture)"
+            ],
+            "colleges": [
+               "IMU Chennai",
+               "MERI Kolkata",
+               "VELS",
+               "SCI Training"
+            ],
+            "isRelevant": true
+         },
+         {
+            "track": "hospitality",
+            "name": "Hotel / Hospitality",
+            "percentage": 27,
+            "description": "Hotels, tourism, culinary arts",
+            "careers": [
+               "Hotel Manager",
+               "Chef",
+               "Event Manager",
+               "Travel Consultant"
+            ],
+            "exams": [
+               "NCHMCT JEE",
+               "IHM Entrance"
+            ],
+            "colleges": [
+               "IHM Delhi",
+               "IHM Mumbai",
+               "WGSHA Manipal"
+            ],
+            "isRelevant": false
+         },
+         {
+            "track": "media_journalism",
+            "name": "Media / Journalism",
+            "percentage": 20,
+            "description": "News, media, content creation, storytelling",
+            "careers": [
+               "Journalist",
+               "News Anchor",
+               "Documentary Maker",
+               "PR Professional"
+            ],
+            "exams": [
+               "IIMC Entrance",
+               "XIC Mumbai",
+               "ACJ Chennai"
+            ],
+            "colleges": [
+               "IIMC",
+               "Asian College of Journalism",
+               "XIC Mumbai",
+               "Jamia"
+            ],
+            "isRelevant": false
+         },
+         {
+            "track": "research_academia",
+            "name": "Research / Academia",
+            "percentage": 15,
+            "description": "Scientific research, teaching, PhD paths",
+            "careers": [
+               "Scientist",
+               "Professor",
+               "Research Fellow",
+               "Lab Director"
+            ],
+            "exams": [
+               "CSIR NET",
+               "GATE",
+               "UGC NET",
+               "JEST"
+            ],
+            "colleges": [
+               "IISc",
+               "TIFR",
+               "IITs",
+               "IISER",
+               "JNU"
+            ],
+            "isRelevant": false
+         },
+         {
+            "track": "govt_defense",
+            "name": "Govt Services (General)",
+            "percentage": 0,
+            "description": "Public service and government administration",
+            "careers": [
+               "Bank PO",
+               "SSC Officer",
+               "Railway Officer",
+               "State Services"
+            ],
+            "exams": [
+               "SSC CGL",
+               "Bank PO",
+               "State PSC",
+               "Railway"
+            ],
+            "isRelevant": false
+         },
+         {
+            "track": "upsc_civil",
+            "name": "UPSC / Civil Services",
+            "percentage": 0,
+            "description": "IAS, IPS, IFS - the prestigious civil services",
+            "careers": [
+               "IAS Officer",
+               "IPS Officer",
+               "IFS Officer",
+               "IRS Officer"
+            ],
+            "exams": [
+               "UPSC CSE Prelims",
+               "UPSC CSE Mains",
+               "Interview"
+            ],
+            "colleges": [
+               "Any graduation",
+               "LAC Delhi",
+               "SRCC"
+            ],
+            "isRelevant": false
+         },
+         {
+            "track": "law_legal",
+            "name": "Law / Legal",
+            "percentage": 0,
+            "description": "Legal profession, courts, justice system",
+            "careers": [
+               "Advocate",
+               "Corporate Lawyer",
+               "Judge",
+               "Legal Consultant"
+            ],
+            "exams": [
+               "CLAT",
+               "AILET",
+               "LSAT India",
+               "Judiciary Exams"
+            ],
+            "colleges": [
+               "NLUs",
+               "NLSIU Bangalore",
+               "NALSAR",
+               "Faculty of Law DU"
+            ],
+            "isRelevant": false
+         },
+         {
+            "track": "psychology",
+            "name": "Psychology / Counseling",
+            "percentage": 0,
+            "description": "Understanding minds, helping people mentally",
+            "careers": [
+               "Psychologist",
+               "Counselor",
+               "Therapist",
+               "HR Specialist"
+            ],
+            "exams": [
+               "CUET",
+               "TISSNET",
+               "BHU"
+            ],
+            "colleges": [
+               "TISS",
+               "Christ University",
+               "DU",
+               "JNU"
+            ],
+            "isRelevant": false
+         }
+      ],
+      "nextSteps": [
+         "📚 Recommended Stream: PCM",
+         "Choose Physics, Chemistry, Maths in 11th standard",
+         "✅ JEE Coaching recommended - you have the aptitude!",
+         "🏎️ Strong automotive interest detected!",
+         "Look into Mechanical/Automobile Engineering branches",
+         "Explore Formula Student teams & SAE competitions",
+         "💬 Talk to professionals in your areas of interest"
+      ],
+      "codingAddon": true,
+      "automotiveInterest": true,
+      "timestamp": "2026-01-19T07:48:01.773Z",
+      "userProfile": {
+         "name": "Gagan",
+         "educationLevel": "10th_passed",
+         "currentStream": "not_applicable",
+         "degreeType": "not_applicable"
+      }
+   },
+   "answers": {
+      "q1": "c",
+      "q2": [
+         "e",
+         "d"
+      ],
+      "q3": "c",
+      "q4": "a",
+      "q5": "a",
+      "q6": "a",
+      "q7": "b",
+      "q8": [
+         "f",
+         "d"
+      ],
+      "q9": "b",
+      "q10": "b",
+      "q11": "b",
+      "q12": "b",
+      "q13": [
+         "c",
+         "e",
+         "l"
+      ],
+      "q14": "d",
+      "q15": "a",
+      "q16": "g",
+      "q17": "f",
+      "q18": "b",
+      "q19": [
+         "a",
+         "c"
+      ],
+      "q20": "d",
+      "q21": "a",
+      "q22": "b",
+      "q23": "b",
+      "q24": "c",
+      "q25": "a",
+      "q26": "b",
+      "q27": "c",
+      "q28": "b",
+      "q29": "c",
+      "q30": [
+         "c",
+         "f"
+      ],
+      "q31": "b",
+      "q32": "c",
+      "q33": "c",
+      "q34": "a",
+      "q35": "d",
+      "q36": "e",
+      "q37": "a",
+      "q38": "f",
+      "q39": "d",
+      "q40": "b"
+   },
+   "exportedAt": "2026-01-19T07:52:41.741Z"
+}
