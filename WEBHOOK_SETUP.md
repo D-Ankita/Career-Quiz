@@ -1,6 +1,6 @@
 # 📊 How to Receive Quiz Results in Google Sheets
 
-This guide will help you set up automatic result collection in a Google Sheet. Every time someone completes the quiz and clicks "Submit for Review", their results will appear in your spreadsheet!
+This guide will help you set up automatic result collection in a Google Sheet. Every time someone completes the quiz, their results (including full answers) will appear in your spreadsheet!
 
 ---
 
@@ -9,10 +9,22 @@ This guide will help you set up automatic result collection in a Google Sheet. E
 1. Go to [Google Sheets](https://sheets.google.com)
 2. Create a new spreadsheet
 3. Name it "Career Quiz Responses"
-4. In row 1, paste these headers (copy the line below and paste in cell A1):
+4. Create **TWO sheets/tabs**:
+   - Sheet 1: "Main Quiz" (for the 40-question quiz)
+   - Sheet 2: "Deep Dive" (for the follow-up quiz)
+
+### Headers for Sheet 1: "Main Quiz"
+In row 1, paste these headers:
 
 ```
-Timestamp	Student Name	Education Level	Current Stream	Degree Type	Top Track 1	Top Track 1 %	Top Track 2	Top Track 2 %	Top Track 3	Top Track 3 %	Stream Recommendation	JEE Recommendation	Routine Tolerance	Stress Tolerance	Clarity	Confidence	Risk Flags	Automotive Interest	Coding Addon	Parent Email	Parent Phone
+Timestamp | Student Name | Education Level | Current Stream | Degree Type | Top Track 1 | Top Track 1 % | Top Track 2 | Top Track 2 % | Top Track 3 | Top Track 3 % | Stream Recommendation | JEE Recommendation | Routine Tolerance | Stress Tolerance | Clarity | Confidence | Risk Flags | Automotive Interest | Coding Addon | Full Results JSON | Answers JSON
+```
+
+### Headers for Sheet 2: "Deep Dive"
+In row 1, paste these headers:
+
+```
+Timestamp | Student Name | Report ID | Commerce Score | Engineering Score | Auto Business Score | Auto Engineering Score | Stress Flags | Clarity | Passion | Primary Path | Full Answers JSON | Full Results JSON
 ```
 
 ---
@@ -27,41 +39,78 @@ Timestamp	Student Name	Education Level	Current Stream	Degree Type	Top Track 1	To
 // Handle POST requests from the quiz
 function doPost(e) {
   try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    
-    // Parse form data (URL-encoded)
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
     var data = e.parameter;
     
-    // Create row with data
-    var row = [
-      new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-      data.studentName || '',
-      data.educationLevel || '',
-      data.currentStream || '',
-      data.degreeType || '',
-      data.topTrack1 || '',
-      data.topTrack1Percentage || 0,
-      data.topTrack2 || '',
-      data.topTrack2Percentage || 0,
-      data.topTrack3 || '',
-      data.topTrack3Percentage || 0,
-      data.streamRecommendation || '',
-      data.jeeRecommendation || '',
-      data.routineTolerance || 0,
-      data.stressTolerance || 0,
-      data.clarity || 0,
-      data.confidence || 0,
-      data.riskFlags || '',
-      data.automotiveInterest === 'true' ? 'Yes' : 'No',
-      data.codingAddon === 'true' ? 'Yes' : 'No',
-      data.parentEmail || '',
-      data.parentPhone || ''
-    ];
+    // Determine which type of submission this is
+    var quizType = data.type || 'main_quiz';
     
-    // Append to sheet
-    sheet.appendRow(row);
+    if (quizType === 'deep_dive') {
+      // Deep Dive Quiz Submission
+      var sheet = ss.getSheetByName('Deep Dive');
+      if (!sheet) {
+        sheet = ss.insertSheet('Deep Dive');
+        sheet.appendRow([
+          'Timestamp', 'Student Name', 'Report ID', 'Commerce Score', 'Engineering Score',
+          'Auto Business Score', 'Auto Engineering Score', 'Stress Flags', 'Clarity', 
+          'Passion', 'Primary Path', 'Full Answers JSON', 'Full Results JSON'
+        ]);
+      }
+      
+      var row = [
+        new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        data.studentName || '',
+        data.reportId || '',
+        data.commerceScore || 0,
+        data.engineeringScore || 0,
+        data.automotiveBusinessScore || 0,
+        data.automotiveEngineeringScore || 0,
+        data.stressFlags || 0,
+        data.clarityScore || 0,
+        data.passionScore || 0,
+        data.primaryPath || '',
+        data.fullAnswersJSON || '',
+        data.fullResultsJSON || ''
+      ];
+      
+      sheet.appendRow(row);
+      
+    } else {
+      // Main Quiz Submission
+      var sheet = ss.getSheetByName('Main Quiz');
+      if (!sheet) {
+        sheet = ss.getSheets()[0]; // Use first sheet if Main Quiz doesn't exist
+      }
+      
+      var row = [
+        new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        data.studentName || '',
+        data.educationLevel || '',
+        data.currentStream || '',
+        data.degreeType || '',
+        data.topTrack1 || '',
+        data.topTrack1Percentage || 0,
+        data.topTrack2 || '',
+        data.topTrack2Percentage || 0,
+        data.topTrack3 || '',
+        data.topTrack3Percentage || 0,
+        data.streamRecommendation || '',
+        data.jeeRecommendation || '',
+        data.routineTolerance || 0,
+        data.stressTolerance || 0,
+        data.clarity || 0,
+        data.confidence || 0,
+        data.riskFlags || '',
+        data.automotiveInterest === 'true' ? 'Yes' : 'No',
+        data.codingAddon === 'true' ? 'Yes' : 'No',
+        data.fullResultsJSON || '',
+        data.answersJSON || ''
+      ];
+      
+      sheet.appendRow(row);
+    }
     
-    // Return success response with CORS headers
+    // Return success response
     return ContentService
       .createTextOutput(JSON.stringify({ success: true, message: 'Data received!' }))
       .setMimeType(ContentService.MimeType.JSON);
@@ -92,7 +141,7 @@ function doGet(e) {
 2. Click the ⚙️ gear icon next to "Select type"
 3. Choose **Web app**
 4. Configure:
-   - **Description:** Career Quiz Webhook v1
+   - **Description:** Career Quiz Webhook v2 (with full answers)
    - **Execute as:** Me (your email)
    - **Who has access:** **Anyone** ⚠️ (This is important!)
 5. Click **Deploy**
@@ -107,38 +156,34 @@ function doGet(e) {
 
 ---
 
-## Step 4: Add URL to Your Quiz App
+## Step 4: Add URL to Vercel Environment Variables
 
-1. In your project folder, create a file named `.env.local`
-2. Add this line (replace with YOUR URL from Step 3):
+Since you're using Vercel:
 
-```
-NEXT_PUBLIC_WEBHOOK_URL=https://script.google.com/macros/s/YOUR_ACTUAL_SCRIPT_ID/exec
-```
-
-3. **Restart the dev server:**
-```bash
-# Press Ctrl+C to stop, then:
-npm run dev
-```
+1. Go to https://vercel.com
+2. Select your project (career-quiz)
+3. Go to **Settings** → **Environment Variables**
+4. Add a new variable:
+   - **Name:** `NEXT_PUBLIC_WEBHOOK_URL`
+   - **Value:** Your Google Apps Script URL from Step 3
+5. Click **Save**
+6. **Redeploy** your project for changes to take effect
 
 ---
 
 ## Step 5: Test It!
 
-1. Open your quiz: http://localhost:3000
-2. Complete a quiz
-3. On the results page, click **"Submit for Review"**
-4. Check your Google Sheet - the data should appear!
+1. Open your quiz: https://career-quiz-ten.vercel.app
+2. Complete a quiz OR the deep dive quiz
+3. Check your Google Sheet - data should appear in the correct sheet!
 
 ---
 
 ## 🔧 Troubleshooting
 
 ### "Webhook URL not configured" error
-- Make sure `.env.local` file exists in the project root
-- Make sure the URL starts with `https://script.google.com/`
-- Restart the dev server after adding the env file
+- Make sure the environment variable is set in Vercel
+- Redeploy after adding the variable
 
 ### Data not appearing in sheet
 1. Open your Apps Script (Extensions → Apps Script)
@@ -149,47 +194,59 @@ npm run dev
 - Make sure you deployed as "Anyone" can access
 - Try redeploying: Deploy → Manage deployments → Edit → Deploy new version
 
-### Still not working?
-Test your webhook by visiting the URL directly in browser - you should see:
-```
-✅ Career Quiz Webhook is active! Waiting for submissions...
-```
+### Updating the Script
+When you update the Apps Script code:
+1. Go to Deploy → Manage deployments
+2. Click the ✏️ edit button
+3. Select "New version" from dropdown
+4. Click Deploy
+5. **No need to change the URL** - it stays the same!
 
 ---
 
-## 📧 Optional: Get Email Notifications
+## 📋 What Gets Saved
 
-Add this inside the `doPost` function, after `sheet.appendRow(row);`:
+### Main Quiz (40 questions)
+- Student profile (name, education, stream)
+- Top 3 career tracks with percentages
+- Stream & JEE recommendations
+- All meter scores (routine, stress, clarity, confidence)
+- Risk flags
+- **Full answers JSON** (every answer to every question)
+- **Full results JSON** (complete analysis)
 
-```javascript
-// Send email notification
-MailApp.sendEmail({
-  to: "YOUR_EMAIL@gmail.com",  // ← Change this!
-  subject: "🎯 New Quiz: " + data.studentName,
-  body: "New submission!\n\n" +
-        "Student: " + data.studentName + "\n" +
-        "Education: " + data.educationLevel + "\n" +
-        "Top Track: " + data.topTrack1 + " (" + data.topTrack1Percentage + "%)\n" +
-        "Stream: " + data.streamRecommendation + "\n" +
-        "JEE: " + data.jeeRecommendation + "\n\n" +
-        "Contact: " + (data.parentEmail || data.parentPhone || "Not provided") + "\n\n" +
-        "View full results in your Google Sheet."
-});
+### Deep Dive Quiz (25 questions)
+- Student name & report ID
+- Commerce vs Engineering scores
+- Automotive Business vs Engineering scores
+- Stress, Clarity, Passion scores
+- Primary path recommendation
+- **All answers** (including custom text answers)
+- **Full results JSON**
+
+---
+
+## 📊 Example Data
+
+Your sheets will contain rich data like:
+
+**Main Quiz - Answers JSON:**
+```json
+{
+  "q1": "c",
+  "q2": ["e", "d"],
+  "q3": "c",
+  ...
+}
 ```
 
-After adding this, click **Deploy → Manage deployments → Edit (pencil icon) → New version → Deploy**
+**Deep Dive - Full Answers JSON:**
+```json
+{
+  "dd1": "📺 Watch YouTube about business/money/startups",
+  "dd2": "[CUSTOM] I like researching car prices and comparing deals",
+  ...
+}
+```
 
----
-
-## 📱 Quick Reference
-
-| What | Where |
-|------|-------|
-| Google Sheet | Your responses appear here |
-| Apps Script | Extensions → Apps Script |
-| Webhook URL | Deploy → Manage deployments |
-| Environment | `.env.local` in project folder |
-
----
-
-Happy counseling! 🎓
+This gives you complete visibility into how each student answered!

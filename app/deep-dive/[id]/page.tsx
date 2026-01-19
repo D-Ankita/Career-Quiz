@@ -10,7 +10,7 @@ import {
 
 interface DeepDiveQuestion {
   id: string;
-  category: 'alignment' | 'stress_test' | 'passion_probe' | 'reality_check' | 'values';
+  category: 'alignment' | 'stress_test' | 'passion_probe' | 'reality_check' | 'values' | 'commerce_validation';
   prompt: string;
   context?: string;
   allowCustom?: boolean; // Allow text input
@@ -25,6 +25,8 @@ interface DeepDiveQuestion {
       stress_flag?: number;
       clarity?: number;
       passion?: number;
+      risk_tolerance?: number;
+      financial_interest?: number;
     };
   }[];
 }
@@ -185,7 +187,7 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
     ]
   },
 
-  // VALUES
+  // VALUES - What matters most
   {
     id: 'dd13',
     category: 'values',
@@ -213,13 +215,137 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
   {
     id: 'dd15',
     category: 'values',
-    prompt: 'Last question: If you could send a message to yourself 5 years from now, what would it be?',
+    prompt: 'If you could send a message to yourself 5 years from now, what would it be?',
     allowCustom: true,
     options: [
       { id: 'a', label: '"Trust the process - hard work pays off"', signals: { engineering: 1, clarity: 1 } },
       { id: 'b', label: '"Follow your gut, not others\' expectations"', signals: { commerce: 1, clarity: 2 } },
       { id: 'c', label: '"Take more risks - you\'re capable"', signals: { commerce: 2, passion: 1 } },
       { id: 'd', label: '"Find what you love, money will follow"', signals: { passion: 3, clarity: 2 } },
+    ]
+  },
+
+  // COMMERCE VALIDATION - Deep dive into business/commerce fit
+  {
+    id: 'dd16',
+    category: 'commerce_validation',
+    prompt: 'Which commerce career path excites you MOST?',
+    context: 'Be specific about what attracts you',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '📊 Chartered Accountant (CA) - audits, tax, financial statements', signals: { commerce: 3, financial_interest: 3 } },
+      { id: 'b', label: '🏢 MBA + Corporate Job - management, strategy, leadership', signals: { commerce: 3, clarity: 1 } },
+      { id: 'c', label: '🚀 Entrepreneur - start my own business/startup', signals: { commerce: 3, risk_tolerance: 3, passion: 2 } },
+      { id: 'd', label: '📈 Stock Trader / Investment Banker - markets & trading', signals: { commerce: 3, financial_interest: 3, risk_tolerance: 2 } },
+      { id: 'e', label: '🤷 Not sure which specific path', signals: { clarity: -1 } },
+    ]
+  },
+  {
+    id: 'dd17',
+    category: 'commerce_validation',
+    prompt: 'Your friend has ₹10,000 to invest. They ask your advice. You:',
+    options: [
+      { id: 'a', label: '📈 Get excited - you know exactly what to suggest', signals: { financial_interest: 3, commerce: 2 } },
+      { id: 'b', label: '🔍 Research different options before answering', signals: { commerce: 2, clarity: 1 } },
+      { id: 'c', label: '🤷 Suggest they ask someone else - not your area', signals: { commerce: -2 } },
+      { id: 'd', label: '💰 Tell them to save it in a bank', signals: { risk_tolerance: -1 } },
+    ]
+  },
+  {
+    id: 'dd18',
+    category: 'commerce_validation',
+    prompt: 'Scenario: You start a small business. First month = ₹5,000 loss. What do you do?',
+    context: 'This tests entrepreneurial mindset',
+    options: [
+      { id: 'a', label: '📊 Analyze what went wrong, adjust strategy, try again', signals: { commerce: 3, risk_tolerance: 2, passion: 1 } },
+      { id: 'b', label: '😰 Panic - this was a mistake', signals: { stress_flag: 2, risk_tolerance: -2 } },
+      { id: 'c', label: '💪 Expected this - first months are always hard', signals: { commerce: 2, risk_tolerance: 3, clarity: 1 } },
+      { id: 'd', label: '🚪 Cut losses and close the business', signals: { risk_tolerance: -2, commerce: -1 } },
+    ]
+  },
+  {
+    id: 'dd19',
+    category: 'commerce_validation',
+    prompt: 'Do you understand these terms? Profit margin, ROI, market cap, P/E ratio',
+    options: [
+      { id: 'a', label: '✅ Yes, I know most/all of them', signals: { financial_interest: 3, commerce: 2 } },
+      { id: 'b', label: '📚 Some of them - learning more', signals: { commerce: 1, financial_interest: 1 } },
+      { id: 'c', label: '❓ Heard them but don\'t really understand', signals: { financial_interest: -1 } },
+      { id: 'd', label: '❌ No idea what these mean', signals: { financial_interest: -2, commerce: -1 } },
+    ]
+  },
+  {
+    id: 'dd20',
+    category: 'commerce_validation',
+    prompt: 'Which book/content would you genuinely read on a weekend?',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '📘 "Rich Dad Poor Dad" / "Psychology of Money"', signals: { commerce: 3, financial_interest: 2 } },
+      { id: 'b', label: '🔧 "How Cars Work" / Engineering textbooks', signals: { engineering: 3 } },
+      { id: 'c', label: '🚀 Startup stories - Zerodha, Ola, Swiggy founders', signals: { commerce: 3, passion: 2 } },
+      { id: 'd', label: '📱 Social media / entertainment only', signals: { clarity: -1 } },
+    ]
+  },
+  {
+    id: 'dd21',
+    category: 'commerce_validation',
+    prompt: 'CA preparation = 3-4 years, 8 papers, 50% fail rate. Your reaction?',
+    context: 'CA is one of the toughest commerce exams',
+    options: [
+      { id: 'a', label: '💪 Challenge accepted - I can do it', signals: { commerce: 2, clarity: 1 } },
+      { id: 'b', label: '🤔 Tough, but if I\'m interested, I\'ll manage', signals: { commerce: 1 } },
+      { id: 'c', label: '😰 That sounds even harder than JEE!', signals: { stress_flag: 1 } },
+      { id: 'd', label: '🚫 I\'d rather do MBA - shorter path', signals: { commerce: 1, risk_tolerance: -1 } },
+    ]
+  },
+  {
+    id: 'dd22',
+    category: 'commerce_validation',
+    prompt: 'Which scenario sounds more FUN to you?',
+    options: [
+      { id: 'a', label: '🧮 Analyzing a company\'s financial statements to find hidden value', signals: { financial_interest: 3, commerce: 3 } },
+      { id: 'b', label: '⚙️ Debugging a complex engineering problem', signals: { engineering: 3 } },
+      { id: 'c', label: '💼 Negotiating a business deal with a client', signals: { commerce: 2, passion: 1 } },
+      { id: 'd', label: '🏎️ Test-driving different cars and comparing specs', signals: { automotive_business: 1, automotive_engineering: 1 } },
+    ]
+  },
+  {
+    id: 'dd23',
+    category: 'commerce_validation',
+    prompt: 'If you could shadow someone for a week, who would it be?',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '🏦 A CA at a Big 4 firm (Deloitte, PwC, EY, KPMG)', signals: { commerce: 3, financial_interest: 2 } },
+      { id: 'b', label: '🚀 A startup founder building their company', signals: { commerce: 3, risk_tolerance: 2, passion: 2 } },
+      { id: 'c', label: '📈 A stock trader at a hedge fund', signals: { commerce: 2, financial_interest: 3, risk_tolerance: 2 } },
+      { id: 'd', label: '🔧 An engineer at Tesla/ISRO', signals: { engineering: 3 } },
+      { id: 'e', label: '🏎️ An F1 team principal (like Christian Horner)', signals: { automotive_business: 2, commerce: 1, passion: 1 } },
+    ]
+  },
+  {
+    id: 'dd24',
+    category: 'commerce_validation',
+    prompt: 'You won ₹1 Lakh in a competition. What do you do?',
+    options: [
+      { id: 'a', label: '📈 Invest in stocks/mutual funds', signals: { financial_interest: 3, risk_tolerance: 2 } },
+      { id: 'b', label: '💼 Use it to start a small business', signals: { commerce: 3, risk_tolerance: 3 } },
+      { id: 'c', label: '🎓 Save for future education (MBA/abroad)', signals: { commerce: 1, clarity: 1 } },
+      { id: 'd', label: '🎁 Buy something I\'ve wanted + save the rest', signals: { risk_tolerance: -1 } },
+      { id: 'e', label: '🔧 Buy tools/equipment for a hobby project', signals: { engineering: 2 } },
+    ]
+  },
+  {
+    id: 'dd25',
+    category: 'commerce_validation',
+    prompt: 'Final commerce check: What genuinely interests you about business/commerce?',
+    context: 'Write in your own words if the options don\'t fit',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '💰 The money - high earning potential', signals: { commerce: 1 } },
+      { id: 'b', label: '🧠 The strategy - understanding how companies grow', signals: { commerce: 3, passion: 2 } },
+      { id: 'c', label: '📊 The numbers - analyzing data, finding patterns', signals: { financial_interest: 3, commerce: 2 } },
+      { id: 'd', label: '🤝 The people - networking, negotiations, deals', signals: { commerce: 2, passion: 1 } },
+      { id: 'e', label: '🤷 I\'m not actually that interested in commerce', signals: { commerce: -3, clarity: 2 } },
     ]
   },
 ];
@@ -232,6 +358,8 @@ interface DeepDiveResults {
   stress_flags: number;
   clarity: number;
   passion: number;
+  risk_tolerance: number;
+  financial_interest: number;
 }
 
 interface AnswerData {
@@ -335,6 +463,8 @@ export default function DeepDivePage() {
       stress_flags: 0,
       clarity: 0,
       passion: 0,
+      risk_tolerance: 0,
+      financial_interest: 0,
     };
 
     Object.entries(answers).forEach(([qId, answerData]) => {
@@ -393,6 +523,10 @@ export default function DeepDivePage() {
         stressFlags: results.stress_flags,
         clarityScore: results.clarity,
         passionScore: results.passion,
+        riskTolerance: results.risk_tolerance,
+        financialInterest: results.financial_interest,
+        commerceVerdict: results.commerce >= 20 && results.financial_interest >= 5 ? 'STRONG' : 
+                         results.commerce >= 15 ? 'MODERATE' : 'WEAK',
         primaryPath: results.commerce > results.engineering ? 'Commerce' : 'Engineering',
         fullAnswersJSON: JSON.stringify(formattedAnswers),
         fullResultsJSON: JSON.stringify(results),
@@ -473,6 +607,7 @@ export default function DeepDivePage() {
       case 'passion_probe': return <Heart className="w-5 h-5" />;
       case 'reality_check': return <Brain className="w-5 h-5" />;
       case 'values': return <Lightbulb className="w-5 h-5" />;
+      case 'commerce_validation': return <Zap className="w-5 h-5" />;
       default: return <Zap className="w-5 h-5" />;
     }
   };
@@ -484,6 +619,7 @@ export default function DeepDivePage() {
       case 'passion_probe': return 'from-pink-500 to-pink-500/50';
       case 'reality_check': return 'from-amber-500 to-amber-500/50';
       case 'values': return 'from-emerald-500 to-emerald-500/50';
+      case 'commerce_validation': return 'from-yellow-500 to-yellow-500/50';
       default: return 'from-lavender to-lavender/50';
     }
   };
@@ -532,7 +668,7 @@ export default function DeepDivePage() {
                 <div className="h-3 bg-white/10 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-ocean rounded-full"
-                    style={{ width: `${(results.commerce / 30) * 100}%` }}
+                    style={{ width: `${Math.min((results.commerce / 50) * 100, 100)}%` }}
                   />
                 </div>
               </div>
@@ -546,7 +682,7 @@ export default function DeepDivePage() {
                 <div className="h-3 bg-white/10 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-lavender rounded-full"
-                    style={{ width: `${(results.engineering / 30) * 100}%` }}
+                    style={{ width: `${Math.min((results.engineering / 50) * 100, 100)}%` }}
                   />
                 </div>
               </div>
@@ -628,6 +764,58 @@ export default function DeepDivePage() {
                   <p className="text-white/60 text-sm">Passion</p>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Commerce Readiness Section */}
+          <div className="p-6 rounded-2xl bg-yellow-500/10 border border-yellow-500/30 mb-6">
+            <h2 className="text-xl font-bold text-white mb-4">💼 Commerce Readiness Check</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+              <div className="p-4 rounded-xl bg-white/5 text-center">
+                <p className="text-2xl font-bold text-yellow-400">{results.financial_interest}</p>
+                <p className="text-white/60 text-xs">Financial Interest</p>
+              </div>
+              <div className="p-4 rounded-xl bg-white/5 text-center">
+                <p className="text-2xl font-bold text-orange-400">{results.risk_tolerance}</p>
+                <p className="text-white/60 text-xs">Risk Tolerance</p>
+              </div>
+              <div className="p-4 rounded-xl bg-white/5 text-center">
+                <p className="text-2xl font-bold text-ocean">{results.commerce}</p>
+                <p className="text-white/60 text-xs">Commerce Score</p>
+              </div>
+              <div className="p-4 rounded-xl bg-white/5 text-center">
+                <p className="text-2xl font-bold text-pink-400">{results.passion}</p>
+                <p className="text-white/60 text-xs">Passion Level</p>
+              </div>
+            </div>
+            
+            {/* Commerce Verdict */}
+            <div className="p-4 rounded-xl bg-white/5 mt-4">
+              <h4 className="font-semibold text-white mb-2">Commerce Verdict:</h4>
+              {results.commerce >= 20 && results.financial_interest >= 5 ? (
+                <div className="text-emerald-400">
+                  <p className="font-medium">✅ STRONG Commerce Fit!</p>
+                  <p className="text-white/70 text-sm mt-1">
+                    High commerce score ({results.commerce}) + strong financial interest ({results.financial_interest}) = Commerce is likely the right path!
+                    {results.risk_tolerance >= 5 && ' Bonus: Good risk tolerance for entrepreneurship.'}
+                  </p>
+                </div>
+              ) : results.commerce >= 15 && results.financial_interest >= 3 ? (
+                <div className="text-yellow-400">
+                  <p className="font-medium">🤔 Moderate Commerce Fit</p>
+                  <p className="text-white/70 text-sm mt-1">
+                    Some commerce interest detected, but needs more exploration. Consider trying basic CA/finance courses to test genuine interest.
+                  </p>
+                </div>
+              ) : (
+                <div className="text-red-400">
+                  <p className="font-medium">⚠️ Weak Commerce Signals</p>
+                  <p className="text-white/70 text-sm mt-1">
+                    Low commerce ({results.commerce}) and financial interest ({results.financial_interest}) scores suggest commerce may NOT be the right fit. 
+                    {results.engineering > results.commerce ? ' Engineering scores are actually higher!' : ''}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
 
