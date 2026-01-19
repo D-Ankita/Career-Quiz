@@ -413,6 +413,130 @@ const DEEP_DIVE_QUESTIONS: DeepDiveQuestion[] = [
       { id: 'e', label: '🏎️ Start my own multi-brand dealership someday', signals: { automotive_business: 3, risk_tolerance: 3, commerce: 2, passion: 2 } },
     ]
   },
+
+  // GROUND REALITY CHECK - Based on real conversation insights
+  {
+    id: 'dd31',
+    category: 'commerce_validation',
+    prompt: '📚 Business mindset requires DEEP learning - finance, marketing, negotiation, people skills. Your reaction?',
+    context: 'Be honest about your learning appetite',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '🔥 Excited! I love learning new things, especially about business', signals: { commerce: 3, passion: 3, clarity: 2 } },
+      { id: 'b', label: '👍 Ready to learn if it leads somewhere good', signals: { commerce: 2, clarity: 1 } },
+      { id: 'c', label: '😐 I\'ll learn what\'s necessary, not more', signals: { commerce: 1, passion: -1 } },
+      { id: 'd', label: '😰 That sounds like a lot of effort...', signals: { commerce: -1, stress_flag: 2 } },
+    ]
+  },
+  {
+    id: 'dd32',
+    category: 'commerce_validation',
+    prompt: '📉 Hard truth: Business is volatile. Aaj profit, kal loss. Kabhi ₹1L kamao, kabhi ₹50K loss. Ready?',
+    context: 'This is the reality of business/sales',
+    options: [
+      { id: 'a', label: '💪 Yes! That\'s what makes it exciting - the ups and downs', signals: { risk_tolerance: 3, commerce: 3, passion: 2 } },
+      { id: 'b', label: '🤔 I understand - need to be mentally prepared', signals: { risk_tolerance: 2, clarity: 1 } },
+      { id: 'c', label: '😬 That\'s scary... I prefer stability', signals: { risk_tolerance: -2, stress_flag: 2 } },
+      { id: 'd', label: '🤷 Never thought about this seriously', signals: { clarity: -1 } },
+    ]
+  },
+  {
+    id: 'dd33',
+    category: 'commerce_validation',
+    prompt: '🗣️ In sales, you need to CONVINCE people to buy. Some will say NO 10 times. How do you feel about this?',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '😎 I enjoy convincing people - it\'s a skill I want to master', signals: { commerce: 3, passion: 2, automotive_business: 2 } },
+      { id: 'b', label: '👍 I can learn to handle rejection, it\'s part of the game', signals: { commerce: 2, risk_tolerance: 1 } },
+      { id: 'c', label: '😣 Rejection hurts me - I take it personally', signals: { stress_flag: 2, commerce: -1 } },
+      { id: 'd', label: '🤔 Never tried sales, don\'t know how I\'d react', signals: { clarity: -1 } },
+    ]
+  },
+  {
+    id: 'dd34',
+    category: 'commerce_validation',
+    prompt: '🎯 Reality: College khatam hote hi showroom nahi milega. Starting from ZERO. Efforts lagane padenge. Your feeling?',
+    context: 'This is the honest truth about any career',
+    options: [
+      { id: 'a', label: '🔥 EXCITING! I\'m ready to build from scratch', signals: { passion: 3, commerce: 3, risk_tolerance: 2, clarity: 2 } },
+      { id: 'b', label: '👍 I understand - everyone starts somewhere', signals: { commerce: 2, clarity: 1 } },
+      { id: 'c', label: '😰 Scary... I hoped for an easier path', signals: { stress_flag: 2, clarity: -1 } },
+      { id: 'd', label: '🤔 I expected some family support to start', signals: { risk_tolerance: -1 } },
+    ]
+  },
+  {
+    id: 'dd35',
+    category: 'commerce_validation',
+    prompt: '🔍 Opportunities dhundna TERA skill hoga. Koi spoon-feed nahi karega. Proactive banana padega. Ready?',
+    options: [
+      { id: 'a', label: '💯 Yes! I\'ll find opportunities myself - network, apply, hustle', signals: { commerce: 3, passion: 2, clarity: 2 } },
+      { id: 'b', label: '👍 I can be proactive with some guidance', signals: { commerce: 2 } },
+      { id: 'c', label: '😬 I usually wait for opportunities to come to me', signals: { commerce: -1, passion: -1 } },
+      { id: 'd', label: '🤷 I expect placements/campus recruitment to help', signals: { clarity: -1 } },
+    ]
+  },
+  {
+    id: 'dd36',
+    category: 'commerce_validation',
+    prompt: '🏢 Would you do an UNPAID internship at a car dealership for 2-3 months to learn the ground reality?',
+    context: 'This is about your willingness to invest time to learn',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '✅ Absolutely! Experience > Money at this stage', signals: { commerce: 3, passion: 3, automotive_business: 3, clarity: 2 } },
+      { id: 'b', label: '🤔 Yes, if it leads to real learning and connections', signals: { commerce: 2, automotive_business: 2 } },
+      { id: 'c', label: '😬 Unpaid? I\'d prefer at least some stipend', signals: { commerce: 1 } },
+      { id: 'd', label: '❌ No way - my time has value', signals: { commerce: -1, automotive_business: -1 } },
+    ]
+  },
+  {
+    id: 'dd37',
+    category: 'commerce_validation',
+    prompt: '📋 Challenge: Pick any car (Creta/Thar/Nexon) and write: price, competitors, why people buy it. Would you enjoy this?',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '🔥 YES! I already know this stuff, sounds fun!', signals: { automotive_business: 3, passion: 3, commerce: 2 } },
+      { id: 'b', label: '👍 Interesting! I\'d research and figure it out', signals: { automotive_business: 2, commerce: 2 } },
+      { id: 'c', label: '😐 I could do it, but it\'s not exciting', signals: { automotive_business: 1 } },
+      { id: 'd', label: '😴 Sounds boring - not my thing', signals: { automotive_business: -2, commerce: -1 } },
+    ]
+  },
+  {
+    id: 'dd38',
+    category: 'commerce_validation',
+    prompt: '📱 Challenge: Create a simple Instagram Reel idea about "cars + pricing + trends". Your reaction?',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '🎬 Already have ideas! "Top 5 cars under ₹10L" type content', signals: { automotive_business: 3, passion: 2, commerce: 2 } },
+      { id: 'b', label: '🤔 Interesting idea - I\'d think about it and try', signals: { automotive_business: 2, commerce: 1 } },
+      { id: 'c', label: '😐 Not really into content creation', signals: { automotive_business: 0 } },
+      { id: 'd', label: '📸 I prefer watching reels, not making them', signals: { passion: -1 } },
+    ]
+  },
+  {
+    id: 'dd39',
+    category: 'commerce_validation',
+    prompt: '💼 If you had ₹1 Lakh to start a small business TODAY, what would you do?',
+    context: 'Write your own idea if the options don\'t fit',
+    allowCustom: true,
+    options: [
+      { id: 'a', label: '🚗 Car accessories / detailing / small service business', signals: { automotive_business: 3, commerce: 3, risk_tolerance: 2 } },
+      { id: 'b', label: '📱 Reselling / dropshipping / online business', signals: { commerce: 3, risk_tolerance: 2 } },
+      { id: 'c', label: '🤔 I\'d research options first before deciding', signals: { commerce: 2, clarity: 1 } },
+      { id: 'd', label: '💰 I\'d save it / invest it, not start a business', signals: { risk_tolerance: -1, financial_interest: 1 } },
+      { id: 'e', label: '🤷 I have no idea what business to start', signals: { clarity: -2 } },
+    ]
+  },
+  {
+    id: 'dd40',
+    category: 'commerce_validation',
+    prompt: '⏰ Final reality check: Success takes TIME. 5-10 years of consistent effort. No shortcuts. How does this feel?',
+    options: [
+      { id: 'a', label: '💪 I\'m in for the long game - patience and persistence', signals: { commerce: 3, clarity: 3, passion: 2 } },
+      { id: 'b', label: '👍 I understand - good things take time', signals: { commerce: 2, clarity: 1 } },
+      { id: 'c', label: '😰 5-10 years is too long... I want faster results', signals: { stress_flag: 2, clarity: -1 } },
+      { id: 'd', label: '🤔 I never thought about the long-term timeline', signals: { clarity: -2 } },
+    ]
+  },
 ];
 
 interface DeepDiveResults {
